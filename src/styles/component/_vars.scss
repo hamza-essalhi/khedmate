@@ -1,0 +1,28 @@
+
+// colors variables
+
+$bg:#FFFAFA;
+$btn-bg:#FC6E5E;
+$input-bg:#FFF1EF;
+$error:#f74835;
+$success:#00FF85;
+$info:#00f7ffde;
+
+// sass font
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+// sass  initialisation
+
+*{
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
+    text-decoration: none;
+    a{
+        color: black;
+    }
+    
+}
+
