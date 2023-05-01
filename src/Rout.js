@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 import {  Outlet } from "react-router-dom";
-import MainNavBar from "./pages/component/MainNavBar";
+import MainNavBar from "./pages/components/MainNavBar";
 =======
 import { Link, Outlet } from "react-router-dom";
 >>>>>>> a153cf3 (Adding React Base Template)
