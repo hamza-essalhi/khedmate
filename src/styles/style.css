@@ -217,6 +217,68 @@ body {
 .main-nav-bar ul li {
   margin: 10px;
 }
+.main-nav-bar .user-menu {
+  display: none;
+}
+.main-nav-bar .user-menu-active {
+  display: flex;
+  flex-direction: column;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  justify-content: space-between;
+  margin: 10px 30px;
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  right: 0px;
+  top: 85px;
+  width: 200px;
+  background-color: #FC6E5E;
+  animation-name: expandNav;
+  animation-duration: 0.5s;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.main-nav-bar .user-menu-active a {
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+  border-radius: 5px;
+  transition: 0.4s;
+}
+.main-nav-bar .user-menu-active a:hover {
+  background-color: white;
+  color: #FC6E5E;
+}
+@keyframes expandNav {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 150px;
+  }
+}
 
 @media only screen and (max-width: 870px) {
   .main-nav-bar .banner img {
