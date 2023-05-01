@@ -49,7 +49,7 @@ body {
     .btn-menu {
       display: flex;
       @include flex($col: false, $v-center: true, $h-center: true);
-      @include btn($btn-bg, white, 30px,30px) ;
+      @include btn($btn-bg, white, 30px, 30px);
       font-size: 20px;
     }
   }
@@ -102,10 +102,10 @@ body {
       margin: 10px;
     }
   }
-  .user-menu{
+  .user-menu {
     display: none;
   }
-  .user-menu-active{
+  .user-menu-active {
     @include flex($col: true, $v-center: false, $h-center: false);
     @include shake;
     justify-content: space-between;
@@ -119,8 +119,8 @@ body {
     background-color: $btn-bg;
     animation-name: expandNav;
     animation-duration: 0.5s;
- 
-    a{
+
+    a {
       color: white;
       font-size: 20px;
       display: flex;
@@ -128,11 +128,23 @@ body {
       justify-content: space-around;
       padding: 5px;
       border-radius: 5px;
-      transition: .4s;
-      &:hover{
-        background-color: white;
-        color: $btn-bg;
-      }
+      transition: 0.4s;
+      animation-name: opAnimation;
+        animation-duration: .5s;
+        animation-fill-mode: forwards;
+        &:hover {
+          background-color: white;
+          color: $btn-bg;
+        }
+       
+          @keyframes opAnimation {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
     }
     @keyframes expandNav {
       from {
@@ -161,16 +173,16 @@ body {
   .main-nav-bar {
     justify-content: space-between;
     transition: height 0.5s ease-in-out;
-  animation-name: expandNav1;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  @keyframes expandNav1 {
-    from {
-      height: 80px;
-    }
-    to {
-      height: 70px;
-    }
+    animation-name: expandNav1;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    @keyframes expandNav1 {
+      from {
+        height: 80px;
+      }
+      to {
+        height: 70px;
+      }
     }
     .banner {
       img {
@@ -183,7 +195,7 @@ body {
         display: none !important;
       }
     }
-    .menu{
+    .menu {
       display: flex;
     }
     .left {
@@ -194,49 +206,103 @@ body {
     }
   }
 
-  .main-nav-active{
-   
+  .main-nav-active {
     margin: 10px 30px;
-  background-color: white;
-  padding: 10px;
-  border-radius: 20px;
-  flex-direction: row;
-  transition: height 0.5s ease-in-out;
-  animation-name: expandNav;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  @keyframes expandNav {
-    from {
-      height: 70px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+    flex-direction: row;
+    transition: height 0.5s ease-in-out;
+    animation-name: expandNavAnimation;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    @keyframes expandNavAnimation {
+      from {
+        height: 70px;
+      }
+      to {
+        height: 200px;
+      }
     }
-    to {
-      height: 200px;
+    .user-menu {
+      display: none;
     }
-  }
-  .banner {
-    img {
-      display: flex;
-      margin-right: 20px;
-      width: 200px;
+    .user-menu-active {
+      @include flex($col: true, $v-center: false, $h-center: false);
       @include shake;
+      justify-content: space-between;
+      margin: 10px 30px;
+      padding: 10px;
+      border-radius: 10px;
+      position: absolute;
+      right: 0px;
+      top: 85px;
+      width: 200px;
+      background-color: $btn-bg;
+      animation-name: expandNav;
+      animation-duration: 0.5s;
+
+      a {
+        color: white;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 5px;
+        border-radius: 5px;
+        transition: 0.4s;
+        animation-name: opAnimation;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+        &:hover {
+          background-color: white;
+          color: $btn-bg;
+        }
+       
+          @keyframes opAnimation {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+      }
+      @keyframes expandNav {
+        from {
+          opacity: 0;
+          height: 0px;
+        }
+        to {
+          opacity: 1;
+          height: 150px;
+        }
+      }
     }
-    .text-banner {
-      display: none !important;
+    .banner {
+      img {
+        display: flex;
+        margin-right: 20px;
+        width: 200px;
+        @include shake;
+      }
+      .text-banner {
+        display: none !important;
+      }
     }
-  }
     .menu {
-        position: absolute;
-        right: 21px;
-        margin: 20px 20px;
-        top: 1px;
+      position: absolute;
+      right: 21px;
+      margin: 20px 20px;
+      top: 1px;
       .btn-menu {
         display: flex;
         @include flex($col: false, $v-center: true, $h-center: true);
-        @include btn($btn-bg, white, 30px,30px) ;
+        @include btn($btn-bg, white, 30px, 30px);
         font-size: 20px;
       }
     }
-    
+
     .left {
       @include flex($col: false, $v-center: true, $h-center: true);
       ul {
@@ -265,7 +331,7 @@ body {
             font-size: 20px;
             background-color: $input-bg;
             color: $btn-bg;
-  
+
             border-radius: 100%;
           }
         }
@@ -276,45 +342,97 @@ body {
       list-style: none;
       li {
         margin: 10px;
+        a,
+        img {
+          animation-name: expandLiAnimation;
+          animation-duration: 3s;
+          animation-fill-mode: forwards;
+          @keyframes expandLiAnimation {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+        }
       }
     }
-
   }
 }
 
 @media screen and (max-width: 500px) {
-  .main-nav-active,.main-nav-bar,.container{
+  .main-nav-active,
+  .main-nav-bar,
+  .container {
     margin: 10px 10px !important;
-    @include shake;
+    
   }
-  .main-nav-active{
+  .user-menu-active {
+    @include flex($col: true, $v-center: false, $h-center: false);
+    @include shake;
+    justify-content: space-between;
+    margin: 10px 30px;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    right: 0px;
+    top: 85px;
+    width: 200px;
+    background-color: $btn-bg;
+    animation-name: expandNavmenu !important;
+    animation-duration: 0.5s;
+
+    a {
+      color: white;
+      font-size: 16px !important;
+    }
+    @keyframes expandNavmenu {
+      from {
+        opacity: 0;
+        height: 0px;
+      }
+      to {
+        opacity: 1;
+        height: max-content;
+      }
+    }
+  }
+  .menu {
+    position: absolute;
+    right: 21px;
+    margin: 20px 10px;
+    top: 1px;
+    .btn-menu {
+      display: flex;
+      @include flex($col: false, $v-center: true, $h-center: true);
+      @include btn($btn-bg, white, 30px, 30px);
+      font-size: 20px;
+    }
+  }
+  .main-nav-active {
     transition: height 0.5s ease-in-out;
     animation-name: expandNav;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
-    @keyframes expandNav {
-      from {
-        height: 70px;
-      }
-      to {
-        height: 200px;
-      }
-    }
-}
-  .main-nav-bar{
-    transition: height 0.5s ease-in-out;
-  animation-name: expandNav1;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  @keyframes expandNav1 {
-    from {
-      height: 80px;
-    }
-    to {
-      height: 70px;
+    a{
+      font-size: 14px;
     }
   }
-}
+  .main-nav-bar {
+    transition: height 0.5s ease-in-out;
+    animation-name: expandNav1;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    @keyframes expandNav1 {
+      from {
+        height: 80px;
+      }
+      to {
+        height: 70px;
+      }
+    }
+  }
 }
 .home {
   @include flex($col: false, $v-center: true, $h-center: false);

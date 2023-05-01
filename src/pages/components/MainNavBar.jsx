@@ -103,7 +103,7 @@ const MainNavBar = () => {
         </Link>
         <Link to="/">
           <IoMdLogOut></IoMdLogOut>
-          LogOut
+          Logout
         </Link>
       </div>
       <div className="menu">

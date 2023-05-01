@@ -266,10 +266,21 @@ body {
   padding: 5px;
   border-radius: 5px;
   transition: 0.4s;
+  animation-name: opAnimation;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 .main-nav-bar .user-menu-active a:hover {
   background-color: white;
   color: #FC6E5E;
+}
+@keyframes opAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @keyframes expandNav {
   from {
@@ -351,16 +362,91 @@ body {
     border-radius: 20px;
     flex-direction: row;
     transition: height 0.5s ease-in-out;
-    animation-name: expandNav;
+    animation-name: expandNavAnimation;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
   }
-  @keyframes expandNav {
+  @keyframes expandNavAnimation {
     from {
       height: 70px;
     }
     to {
       height: 200px;
+    }
+  }
+  .main-nav-active .user-menu {
+    display: none;
+  }
+  .main-nav-active .user-menu-active {
+    display: flex;
+    flex-direction: column;
+    animation: shake 0.8s ease-in-out;
+    animation-fill-mode: forwards;
+    justify-content: space-between;
+    margin: 10px 30px;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    right: 0px;
+    top: 85px;
+    width: 200px;
+    background-color: #FC6E5E;
+    animation-name: expandNav;
+    animation-duration: 0.5s;
+  }
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-1px);
+    }
+    40% {
+      transform: translateX(1px);
+    }
+    60% {
+      transform: translateX(-1px);
+    }
+    80% {
+      transform: translateX(1px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  .main-nav-active .user-menu-active a {
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.4s;
+    animation-name: opAnimation;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+  }
+  .main-nav-active .user-menu-active a:hover {
+    background-color: white;
+    color: #FC6E5E;
+  }
+  @keyframes opAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes expandNav {
+    from {
+      opacity: 0;
+      height: 0px;
+    }
+    to {
+      opacity: 1;
+      height: 150px;
     }
   }
   .main-nav-active .banner img {
@@ -499,12 +585,43 @@ body {
   .main-nav-active ul li {
     margin: 10px;
   }
+  .main-nav-active ul li a,
+  .main-nav-active ul li img {
+    animation-name: expandLiAnimation;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes expandLiAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
 @media screen and (max-width: 500px) {
-  .main-nav-active, .main-nav-bar, .container {
+  .main-nav-active,
+  .main-nav-bar,
+  .container {
     margin: 10px 10px !important;
+  }
+  .user-menu-active {
+    display: flex;
+    flex-direction: column;
     animation: shake 0.8s ease-in-out;
     animation-fill-mode: forwards;
+    justify-content: space-between;
+    margin: 10px 30px;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    right: 0px;
+    top: 85px;
+    width: 200px;
+    background-color: #FC6E5E;
+    animation-name: expandNavmenu !important;
+    animation-duration: 0.5s;
   }
   @keyframes shake {
     0% {
@@ -526,19 +643,74 @@ body {
       transform: translateX(0);
     }
   }
+  .user-menu-active a {
+    color: white;
+    font-size: 16px !important;
+  }
+  @keyframes expandNavmenu {
+    from {
+      opacity: 0;
+      height: 0px;
+    }
+    to {
+      opacity: 1;
+      height: max-content;
+    }
+  }
+  .menu {
+    position: absolute;
+    right: 21px;
+    margin: 20px 10px;
+    top: 1px;
+  }
+  .menu .btn-menu {
+    display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: #FC6E5E;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    animation: shake 0.8s ease-in-out;
+    animation-fill-mode: forwards;
+    transition: 0.3s;
+    font-size: 20px;
+  }
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-1px);
+    }
+    40% {
+      transform: translateX(1px);
+    }
+    60% {
+      transform: translateX(-1px);
+    }
+    80% {
+      transform: translateX(1px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  .menu .btn-menu:hover {
+    background-color: #e36355;
+    color: white;
+  }
   .main-nav-active {
     transition: height 0.5s ease-in-out;
     animation-name: expandNav;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
   }
-  @keyframes expandNav {
-    from {
-      height: 70px;
-    }
-    to {
-      height: 200px;
-    }
+  .main-nav-active a {
+    font-size: 14px;
   }
   .main-nav-bar {
     transition: height 0.5s ease-in-out;
