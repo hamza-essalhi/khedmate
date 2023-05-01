@@ -8,15 +8,22 @@ import userImage from "../../images/user.jpg";
 import { AiFillMessage } from "react-icons/ai";
 import { IoMdNotifications, IoMdSearch,IoMdMenu } from "react-icons/io";
 //utls
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const MainNavBar = () => {
-  const [click,setClick]=useState(false);
-  const menuHandler=()=>{
-    setClick((click) => !click)
-    console.log(click)
-  }
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 700) {
+        setMenuOpen(false);
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  const menuHandler = () => setMenuOpen(!menuOpen);
+  
   return (
-    <nav className="main-nav-bar">
+    <nav className= {menuOpen ? "main-nav-active" : "main-nav-bar" }>
       <div className="banner">
           <Link to="/" className="text-banner">
             <IoMdSearch className='search-icon'></IoMdSearch>

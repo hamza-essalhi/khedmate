@@ -1,5 +1,5 @@
-@import "components/vars";
-@import "components/functions-mixins";
+@import "sass/vars";
+@import "sass/functions-mixins";
 
 body {
   background-color: $bg;
@@ -119,6 +119,29 @@ body {
 @media screen and (max-width: 700px) {
   .main-nav-bar {
     justify-content: space-between;
+    transition: height 0.5s ease-in-out;
+  animation-name: expandNav1;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  @keyframes expandNav1 {
+    from {
+      height: 70px;
+    }
+    to {
+      height: 60px;
+    }
+    }
+    .banner {
+      img {
+        display: flex;
+        margin-right: 20px;
+        width: 200px;
+        @include shake;
+      }
+      .text-banner {
+        display: none !important;
+      }
+    }
     .menu{
       display: flex;
     }
@@ -129,6 +152,128 @@ body {
       display: none;
     }
   }
+
+  .main-nav-active{
+   
+    margin: 10px 30px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px;
+  flex-direction: row;
+  transition: height 0.5s ease-in-out;
+  animation-name: expandNav;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  @keyframes expandNav {
+    from {
+      height: 60px;
+    }
+    to {
+      height: 200px;
+    }
+  }
+  .banner {
+    img {
+      display: flex;
+      margin-right: 20px;
+      width: 200px;
+      @include shake;
+    }
+    .text-banner {
+      display: none !important;
+    }
+  }
+    .menu {
+        position: absolute;
+        right: 21px;
+        margin: 20px 20px;
+        top: 1px;
+      .btn-menu {
+        display: flex;
+        @include flex($col: false, $v-center: true, $h-center: true);
+        @include btn($btn-bg, white, 30px,30px) ;
+        font-size: 20px;
+      }
+    }
+    
+    .left {
+      @include flex($col: false, $v-center: true, $h-center: true);
+      ul {
+        li {
+          @include hover-animation-li();
+        }
+      }
+    }
+    .right {
+      @include flex($col: false, $v-center: true, $h-center: true);
+      img {
+        width: 30px;
+        border-radius: 100%;
+        border: 2px $success solid;
+      }
+      ul {
+        width: 60%;
+        justify-content: space-evenly;
+        li {
+          a {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            background-color: $input-bg;
+            color: $btn-bg;
+  
+            border-radius: 100%;
+          }
+        }
+      }
+    }
+    ul {
+      @include flex($col: false, $v-center: true, $h-center: false);
+      list-style: none;
+      li {
+        margin: 10px;
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main-nav-active,.main-nav-bar,.container{
+    margin: 10px 10px !important;
+    @include shake;
+  }
+  .main-nav-active{
+    transition: height 0.5s ease-in-out;
+    animation-name: expandNav;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    @keyframes expandNav {
+      from {
+        height: 60px;
+      }
+      to {
+        height: 200px;
+      }
+    }
+}
+  .main-nav-bar{
+    transition: height 0.5s ease-in-out;
+  animation-name: expandNav1;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  @keyframes expandNav1 {
+    from {
+      height: 70px;
+    }
+    to {
+      height: 60px;
+    }
+  }
+}
 }
 .home {
   @include flex($col: false, $v-center: true, $h-center: false);
