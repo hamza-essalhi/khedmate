@@ -3,10 +3,12 @@ import { FaSearch } from "react-icons/fa";
 import Select from "../components/Select";
 import { useEffect, useState } from "react";
 import usersData from "../../users.json";
+import job from "../../jobs.json";
 import Job from "../components/Home/Job";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
+  const [jobs, setJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage, setUsersPerPage] = useState(10);
   const options = [
@@ -20,6 +22,7 @@ const Home = () => {
   useEffect(() => {
     const firstTenUsers = usersData.slice(0, 100);
     setUsers(firstTenUsers);
+    setJobs(job.slice(0, 100))
   }, []);
 
   const indexOfLastUser = currentPage * usersPerPage;
@@ -72,9 +75,10 @@ const Home = () => {
             <h4>20 jobs has been found</h4>
           </div>
         </div>
-        {currentUsers.map((user) => (
-          <Job key={user.id} user={user} />
-        ))}
+        {currentUsers.map(user => {
+          const job = jobs.find(job => job.id === user.id);
+          return <Job key={user.id} user={user} job={job} />
+        })}
         <div className="row">
         {renderPagination()}
         </div>
