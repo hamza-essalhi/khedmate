@@ -1,5 +1,6 @@
 @import "sass/vars";
 @import "sass/functions-mixins";
+@import "sass/utls";
 
 body {
   background-color: $bg;
@@ -106,6 +107,8 @@ body {
     display: none;
   }
   .user-menu-active {
+    z-index: 4;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     @include flex($col: true, $v-center: false, $h-center: false);
     @include shake;
     justify-content: space-between;
@@ -130,21 +133,21 @@ body {
       border-radius: 5px;
       transition: 0.4s;
       animation-name: opAnimation;
-        animation-duration: .5s;
-        animation-fill-mode: forwards;
-        &:hover {
-          background-color: white;
-          color: $btn-bg;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+      &:hover {
+        background-color: white;
+        color: $btn-bg;
+      }
+
+      @keyframes opAnimation {
+        0% {
+          opacity: 0;
         }
-       
-          @keyframes opAnimation {
-            0% {
-              opacity: 0;
-            }
-            100% {
-              opacity: 1;
-            }
-          }
+        100% {
+          opacity: 1;
+        }
+      }
     }
     @keyframes expandNav {
       from {
@@ -258,15 +261,15 @@ body {
           background-color: white;
           color: $btn-bg;
         }
-       
-          @keyframes opAnimation {
-            0% {
-              opacity: 0;
-            }
-            100% {
-              opacity: 1;
-            }
+
+        @keyframes opAnimation {
+          0% {
+            opacity: 0;
           }
+          100% {
+            opacity: 1;
+          }
+        }
       }
       @keyframes expandNav {
         from {
@@ -366,7 +369,6 @@ body {
   .main-nav-bar,
   .container {
     margin: 10px 10px !important;
-    
   }
   .user-menu-active {
     @include flex($col: true, $v-center: false, $h-center: false);
@@ -415,7 +417,7 @@ body {
     animation-name: expandNav;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
-    a{
+    a {
       font-size: 14px;
     }
   }
@@ -439,7 +441,6 @@ body {
   margin: 10px 30px;
   .left,
   .right {
-    background-color: white;
     margin: 5px;
     padding: 10px;
     border-radius: 20px;
@@ -449,5 +450,133 @@ body {
   }
   .right {
     flex: 3;
+    .row {
+      @include flex($col: true, $v-center: true, $h-center: false);
+
+      background-color: white;
+      padding: 10px;
+      margin-bottom: 30px;
+      .col {
+        width: 100%;
+        @include flex($col: false, $v-center: true, $h-center: false);
+      }
+      .search {
+        width: 100%;
+        @include flex($col: false, $v-center: true, $h-center: false);
+        justify-content: space-between;
+      }
+      .search-box{
+        width: 100%;
+        @include flex($col: false, $v-center: true, $h-center: false);
+        margin-top: 30px;
+        form{
+          width: 100%;
+          @include flex($col: false, $v-center: true, $h-center: false);
+          input{
+            @include input;
+          }
+          button{
+            @include btn($btn-bg,white,auto,auto);
+            padding:15px
+          }
+          
+          
+
+        }
+       
+      }
+      .job-result{
+        h4{
+          @include input;
+          text-align: center;
+          padding: 10px;
+          margin: 10px;
+        }
+      }
+      
+    }
+
+    .job-box{
+      .sub-row {
+        width: 100%;
+        @include flex($col: false, $v-center: true, $h-center: true);
+        
+        .col {
+          width: 100%;
+          flex: 1;
+          img {
+            width: 100px;
+            border-radius: 100%;
+          }
+          &.user-data{
+            flex: 3;
+            div{
+              @include flex($col: true, $v-center: false, $h-center: true);
+              margin: 20px;
+            }
+          }
+          &.date{
+            flex: 1;
+            justify-content: center;
+          }
+          &.like{
+            justify-content: end;
+            margin: 10px;
+            font-size: 40px;
+            .like-btn{
+              font-size: 40px;
+              @include btn-nbg($btn-bg)
+              
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.main-footer {
+  background-color: white;
+  @include flex($col: true, $v-center: true, $h-center: true);
+  a {
+    transition: 0.3s;
+    &:hover {
+      background-color: white;
+      color: $btn-bg;
+    }
+  }
+  padding: 10px;
+  .top,
+  .middel,
+  .bottom {
+    margin: 30px 10px;
+  }
+  .top {
+    @include flex($col: false, $v-center: true, $h-center: true);
+    img {
+      width: 30%;
+    }
+  }
+  .middel {
+    width: 50%;
+
+    ul {
+      list-style: none;
+      @include flex($col: false, $v-center: true, $h-center: false);
+      justify-content: space-evenly;
+    }
+  }
+  .bottom {
+    width: 100%;
+    @include flex($col: false, $v-center: true, $h-center: false);
+    justify-content: space-between;
+    .col {
+      @include flex($col: false, $v-center: true, $h-center: false);
+      justify-content: space-evenly;
+    }
+    .footer-icon {
+      color: $btn-bg;
+      font-size: 40px;
+    }
   }
 }

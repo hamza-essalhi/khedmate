@@ -1,0 +1,64 @@
+@import './vars';
+
+.custom-select {
+	position: relative;
+	width: 200px;
+    border-radius: 10px;
+    .select-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $btn-bg;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 1px $input-bg;
+        }
+        .arrow-down {
+            margin-left: auto;
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+        }
+    }
+    
+    .options {
+        border-radius: 10px;
+        margin-top: 10px;
+        position: absolute;
+        top: 48px;
+        left: 0;
+        width: 100%;
+        max-height: 200px;
+        overflow-y: auto;
+        background-color: $btn-bg;
+        color: white;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        z-index: 1;
+       
+        
+        li {
+            margin: 6px;
+            padding: 6px;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover {
+                background-color: white;
+                color: $btn-bg;
+            }
+        }
+        li.selected {
+            background-color: white;
+            color: $btn-bg;
+
+        }
+    }
+}
+
