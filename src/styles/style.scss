@@ -437,7 +437,17 @@ body {
   }
 }
 .home {
-  @include flex($col: false, $v-center: true, $h-center: false);
+  @include flex($col: false, $v-center: false, $h-center: false);
+  .scroll-bottom,.scroll-top{
+    display: none;
+    position: fixed;
+    right: 0;
+    @include btn(rgba(224, 8, 8, 0.342),white,auto,auto);
+    padding:15px
+  }
+  .scroll-top{
+    bottom: 0;
+  }
   margin: 10px 30px;
   .left,
   .right {
@@ -455,7 +465,7 @@ body {
 
       background-color: white;
       padding: 10px;
-      margin-bottom: 30px;
+      margin-bottom: 3em;
       .col {
         width: 100%;
         @include flex($col: false, $v-center: true, $h-center: false);
@@ -469,7 +479,7 @@ body {
         width: 100%;
         @include flex($col: false, $v-center: true, $h-center: false);
         margin-top: 30px;
-        form{
+        .form{
           width: 100%;
           @include flex($col: false, $v-center: true, $h-center: false);
           input{
@@ -499,7 +509,8 @@ body {
     .job-box{
       .sub-row {
         width: 100%;
-        @include flex($col: false, $v-center: true, $h-center: true);
+        @include flex($col: false, $v-center: false, $h-center: true);
+       
         
         .col {
           width: 100%;
@@ -514,12 +525,21 @@ body {
               @include flex($col: true, $v-center: false, $h-center: true);
               margin: 20px;
             }
+            span{
+              margin: 5px;
+              color: rgba(0, 0, 0, 0.486);
+            }
+            h3{
+              margin: 5px;
+            }
           }
           &.date{
+            margin: 20px;
             flex: 1;
             justify-content: center;
           }
           &.like{
+            margin: 20px;
             justify-content: end;
             margin: 10px;
             font-size: 40px;
@@ -528,6 +548,54 @@ body {
               @include btn-nbg($btn-bg)
               
             }
+          }
+        }
+      }
+      .job-details{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5em;
+        width: 90%;
+        a{
+            @include btn($btn-bg,white,50%,auto);
+            @include flex($col: false, $v-center: true, $h-center: true);
+            padding:10px;
+            margin-top: 5em;
+            
+        }
+      }
+      .key-words{
+        
+        width: 100%;
+        @include flex($col: false, $v-center: true, $h-center: true);
+        flex-wrap: wrap;
+        margin: 4em 0;
+        padding: 10px;
+        span{
+          @include flex($col: false, $v-center: true, $h-center: true);
+          @include btn($input-bg,rgb(0, 0, 0),max-content,auto);
+          padding: 15px;
+          margin: 1em;
+        }
+      }
+    }
+    .pagination{
+      ul{
+        list-style: none;
+        @include flex($col: false, $v-center: true, $h-center: false);
+        li{
+          margin: 4px;
+          
+          button{
+            @include btn($btn-bg,white,auto,auto);
+            padding:15px
+          }
+        }
+        .active{
+          button{
+            @include btn($success,white,auto,auto);
+            padding:15px
           }
         }
       }

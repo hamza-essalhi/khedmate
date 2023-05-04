@@ -78,6 +78,9 @@
       background-color: $hover-color;
       color: if(lightness($hover-color) > 50, white, black);
     }
+    &:active{
+      @include shake()
+    }
     
   }
 
