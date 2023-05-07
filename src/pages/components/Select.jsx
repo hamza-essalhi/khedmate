@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
+
+// custom select no need for select input , bullshit :)
 const Select = ({ options, defaultValue, onChange }) => {
   const [selectedOption, setSelectedOption] = useState(defaultValue);
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +30,7 @@ const Select = ({ options, defaultValue, onChange }) => {
         )}
       </div>
       {isOpen && (
-        <ul className="options">
+        <ul className={isOpen ? "options" :"active"}>
           {options.map((option) => (
             <li
               key={option.value}

@@ -1,0 +1,8 @@
+[
+  { "label": "All", "value": "All" },
+  { "label": "High School", "value": "High School" },
+  { "label": "Vocational/Trade School", "value": "Vocational/Trade School" },
+  { "label": "Bachelor's Degree", "value": "Bachelor's Degree" },
+  { "label": "Master's Degree", "value": "Master's Degree" },
+  { "label": "Doctorate/PhD", "value": "Doctorate/PhD" }
+]

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const Job = (props) => {
   const user = props.user;
-
   const [like, setLike] = useState(false);
 
   const handleLike = () => {
@@ -26,15 +25,15 @@ const Job = (props) => {
         <div className="col user-data">
           <img src={userImage} alt="" />
           <div className="sub-col">
-            <h3>{user.job.jobe_title}</h3>
+            <h3>{user.job?.jobe_title}</h3>
             <span>
               Bost {user.first_name} {user.last_name}
             </span>
-            <span>{user.job.city}</span>
+            <span>{user.job?.city}</span>
           </div>
         </div>
         <div className="col date">
-          <span>{user.job.date}</span>
+          <span>{user.job?.date}</span>
         </div>
         <div className="col like">
           {!like ? (
@@ -51,13 +50,13 @@ const Job = (props) => {
         </div>
       </div>
       <div className="sub-row job-details">
-        <span>{user.job.job_description}</span>
+        <span>{user.job?.job_description}</span>
 
         <Link>Apply Now</Link>
       </div>
 
       <div className="sub-col key-words">
-        {user.job.key_words.map((keyword, index) => (
+        {user.job?.key_words.map((keyword, index) => (
           <span key={index}>{keyword}</span>
         ))}
       </div>

@@ -1,5 +1,8 @@
 import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
 
+
+// pagination still need som fix but logic is done 
+
 const Pagination = (props) => {
   const totalPages = props.totalPages;
   const handleClick = props.handleClick;

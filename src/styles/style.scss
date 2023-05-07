@@ -438,31 +438,128 @@ body {
 }
 .home {
   @include flex($col: false, $v-center: false, $h-center: false);
-  .scroll-bottom,.scroll-top{
-    display: none;
+  border-radius: 10px;
+
+  .scroll-bottom,
+  .scroll-top {
     position: fixed;
     right: 0;
-    @include btn(rgba(224, 8, 8, 0.342),white,auto,auto);
-    padding:15px
+    z-index: 5;
+    
+    button{
+      background-color: transparent;
+      animation: scroll-btn-animation  .3s ease-in;
+      transition: 0.3s;
+      &:hover{
+        transform: scale(1.09);
+      }
+    @keyframes scroll-btn-animation {
+      from {
+        opacity: 0;
+       
+      }
+      to {
+        opacity: 1;
+        
+      }
+    }
+    }
+    .scroll-icon{
+      @include btn($btn-bg, white, auto, auto);
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      padding: 5px;
+      font-size: 20px;
+      
+    }
   }
-  .scroll-top{
+  .scroll-top {
     bottom: 0;
   }
-  margin: 10px 30px;
+  .scroll-bottom{
+    top: 3em;
+  }
+  
   .left,
   .right {
-    margin: 5px;
-    padding: 10px;
+    margin: 2em;
     border-radius: 20px;
   }
   .left {
     flex: 1;
+    background-color: white;
+    padding: 20px;
+    height: max-content;
+    .row {
+      .col {
+        margin-top: 2em;
+        h4 {
+          margin: 1em;
+        }
+        .custom-select {
+          width: 250px;
+          .options {
+            position: relative;
+            top: auto;
+            margin-top: 1em;
+            animation: select-animation 0.2s ease-in;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+            &::-webkit-scrollbar-track {
+             
+              box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+              background-color: white
+            }
+
+            &::-webkit-scrollbar {
+              width: 0.8em;
+              background-color: #ff2727;
+            }
+
+            &::-webkit-scrollbar-thumb {
+              box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+              background-color:mix($btn-bg , black ,60%) ;
+              border-radius: 3px;
+              padding: 10px;
+              &:hover{
+                background-color:mix($btn-bg , black ,20%) ;
+              }
+            }
+            li {
+              font-size: 14px;
+            }
+            @keyframes select-animation {
+              from {
+                opacity: 0;
+                height: 0;
+              }
+              to {
+                opacity: 1;
+                height: 200px;
+              }
+            }
+          }
+          .active {
+            animation: select-animation-revers 0.2s ease-in;
+
+            @keyframes select-animation-revers {
+              from {
+                opacity: 1;
+                height: 200px;
+              }
+              to {
+                opacity: 0;
+                height: 0;
+              }
+            }
+          }
+        }
+      }
+    }
   }
   .right {
     flex: 3;
     .row {
       @include flex($col: true, $v-center: true, $h-center: false);
-
+      border-radius: 20px;
       background-color: white;
       padding: 10px;
       margin-bottom: 3em;
@@ -475,43 +572,37 @@ body {
         @include flex($col: false, $v-center: true, $h-center: false);
         justify-content: space-between;
       }
-      .search-box{
+      .search-box {
         width: 100%;
         @include flex($col: false, $v-center: true, $h-center: false);
         margin-top: 30px;
-        .form{
+        .form {
           width: 100%;
           @include flex($col: false, $v-center: true, $h-center: false);
-          input{
+          input {
             @include input;
           }
-          button{
-            @include btn($btn-bg,white,auto,auto);
-            padding:15px
+          button {
+            @include btn($btn-bg, white, auto, auto);
+            padding: 15px;
           }
-          
-          
-
         }
-       
       }
-      .job-result{
-        h4{
+      .job-result {
+        h4 {
           @include input;
           text-align: center;
           padding: 10px;
           margin: 10px;
         }
       }
-      
     }
 
-    .job-box{
+    .job-box {
       .sub-row {
         width: 100%;
         @include flex($col: false, $v-center: false, $h-center: true);
-       
-        
+
         .col {
           width: 100%;
           flex: 1;
@@ -519,83 +610,80 @@ body {
             width: 100px;
             border-radius: 100%;
           }
-          &.user-data{
+          &.user-data {
             flex: 3;
-            div{
+            div {
               @include flex($col: true, $v-center: false, $h-center: true);
               margin: 20px;
             }
-            span{
+            span {
               margin: 5px;
               color: rgba(0, 0, 0, 0.486);
             }
-            h3{
+            h3 {
               margin: 5px;
             }
           }
-          &.date{
+          &.date {
             margin: 20px;
             flex: 1;
             justify-content: center;
           }
-          &.like{
+          &.like {
             margin: 20px;
             justify-content: end;
             margin: 10px;
             font-size: 40px;
-            .like-btn{
+            .like-btn {
               font-size: 40px;
-              @include btn-nbg($btn-bg)
-              
+              @include btn-nbg($btn-bg);
             }
           }
         }
       }
-      .job-details{
+      .job-details {
         flex-direction: column;
         align-items: center;
         justify-content: center;
         margin-top: 5em;
         width: 90%;
-        a{
-            @include btn($btn-bg,white,50%,auto);
-            @include flex($col: false, $v-center: true, $h-center: true);
-            padding:10px;
-            margin-top: 5em;
-            
+        a {
+          @include btn($btn-bg, white, 50%, auto);
+          @include flex($col: false, $v-center: true, $h-center: true);
+          padding: 10px;
+          margin-top: 5em;
         }
       }
-      .key-words{
-        
+      .key-words {
         width: 100%;
         @include flex($col: false, $v-center: true, $h-center: true);
         flex-wrap: wrap;
         margin: 4em 0;
         padding: 10px;
-        span{
+        span {
           @include flex($col: false, $v-center: true, $h-center: true);
-          @include btn($input-bg,rgb(0, 0, 0),max-content,auto);
+          @include btn($input-bg, rgb(0, 0, 0), max-content, auto);
           padding: 15px;
           margin: 1em;
         }
       }
     }
-    .pagination{
-      ul{
+    .pagination {
+      ul {
         list-style: none;
         @include flex($col: false, $v-center: true, $h-center: false);
-        li{
+        li {
           margin: 4px;
-          
-          button{
-            @include btn($btn-bg,white,auto,auto);
-            padding:15px
+
+          button {
+            @include btn($btn-bg, white, auto, auto);
+            padding: 15px;
           }
         }
-        .active{
-          button{
-            @include btn($success,white,auto,auto);
-            padding:15px
+        .active {
+          button {
+            @include btn($success, white, auto, auto);
+            padding: 15px;
           }
         }
       }

@@ -1,23 +1,18 @@
-
-import {  Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import MainNavBar from "./pages/components/MainNavBar";
 // import Footer from "./pages/components/Footer";
 
-
-
-
-
-const Rout= ()=>{
-  return(
+const Rout = () => {
+  return (
     <>
-        <MainNavBar />
-        <div>
-            <Outlet />
-        </div>
-        {/* <Footer/> */}
-    </>
-  )
-}
+      {/* navbar */}
+      <MainNavBar />
+      {/* content */}
+      <Outlet />
 
+      {/* <Footer/> */}
+    </>
+  );
+};
 
 export default Rout;
