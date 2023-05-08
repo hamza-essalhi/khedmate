@@ -694,8 +694,8 @@ body {
           }
           &.like {
             margin: 20px;
-            // eslint-disable-next-line 
-            justify-content:flex-end ;
+            // eslint-disable-next-line
+            justify-content: flex-end;
             margin: 10px;
             font-size: 40px;
             .like-btn {
@@ -724,10 +724,10 @@ body {
         flex-wrap: wrap;
         margin: 2em 0;
         padding: 10px;
-        h3{
+        h3 {
           margin-bottom: 1em;
         }
-        .keywords-row{
+        .keywords-row {
           @include flex($col: false, $v-center: true, $h-center: true);
           span {
             @include flex($col: false, $v-center: true, $h-center: true);
@@ -735,9 +735,7 @@ body {
             padding: 15px;
             margin: 1em;
           }
-
         }
-        
       }
     }
     .pagination {
@@ -791,15 +789,20 @@ body {
         margin: 20px;
         flex: 5;
         justify-content: center;
-        h3{
+        h3 {
           font-size: 25px;
           margin: 1em;
         }
-        .sub-row{
+        .sub-row {
           justify-content: space-between;
           span {
             @include flex($col: false, $v-center: true, $h-center: true);
-            @include btn(rgba(170, 106, 106, 0.233), rgb(0, 0, 0), max-content, auto);
+            @include btn(
+              rgba(170, 106, 106, 0.233),
+              rgb(0, 0, 0),
+              max-content,
+              auto
+            );
             padding: 15px;
             margin: 1em;
           }
@@ -809,7 +812,7 @@ body {
         margin: 1em;
         display: flex;
         justify-content: flex-end;
-        
+
         font-size: 40px;
         .like-btn {
           font-size: 40px;
@@ -824,17 +827,17 @@ body {
     align-items: center;
     justify-content: center;
     margin-top: 5em;
-    
+
     a {
       @include btn($btn-bg, white, 30%, auto);
       @include flex($col: false, $v-center: true, $h-center: true);
       padding: 10px;
       margin-top: 5em;
     }
-    span{
+    span {
       width: 70%;
     }
-    .sub-row{
+    .sub-row {
       width: 70%;
       justify-content: space-between;
       flex-wrap: wrap;
@@ -850,11 +853,10 @@ body {
   .key-words {
     width: 100%;
     @include flex($col: true, $v-center: true, $h-center: false);
-    
+
     margin: 4em 0;
     padding: 10px;
-    .col-key-words
-    {
+    .col-key-words {
       @include flex($col: false, $v-center: false, $h-center: false);
       span {
         @include flex($col: false, $v-center: true, $h-center: true);
@@ -863,8 +865,65 @@ body {
         margin: 1em;
       }
     }
+  }
+}
+
+.about-us,.contact-us {
+  background-color: white;
+  @include flex($col: true, $v-center: false, $h-center: false);
+  border-radius: 10px;
+  margin: 2em;
+  padding: 10px;
+
+  .col {
+    @include flex($col: true, $v-center: false, $h-center: false);
+    width: 100%;
+    @include flex($col: false, $v-center: true, $h-center: true);
+    .sub-col{
+      @include flex($col: true, $v-center: true, $h-center: true);
+      width: 80%;
+      padding: 20px;
+      img{
+        width: 40%;
+       
+      }
+    }
+    form{
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+      margin: 3em;
+      label,input,textarea,.btn{
+        margin: 0.5em;
+      }
+      textarea{
+        resize: none;
+      }
+      input,textarea{
+        border: 2px $btn-bg solid;
+        border-radius: 10px;
+        padding: 15px;
+        outline: none;
+        transition: .3s;
+        &:hover,&:active,:focus{
+          border-color: $info;
+          outline: none;
+          label{
+            color: $success
+          }
+        }
+      }
+      button{
+        @include btn($btn-bg,white,40%,auto);
+        padding:15px;
+      }
+      .btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
     
-   
   }
 }
 

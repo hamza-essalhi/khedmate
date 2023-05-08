@@ -1,5 +1,5 @@
 import Select from "../components/Select";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import usersData from "../../users.json";
 // import job from "../../jobs1.json";
 import cities from "../../data/cities.json";
@@ -12,6 +12,7 @@ import {
   IoIosArrowDropupCircle,
 } from "react-icons/io";
 import axios from "axios";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -27,6 +28,18 @@ const Home = () => {
   const [selectedEducation, setSelectedEducation] = useState("");
   const [showTopButton, setShowTopButton] = useState(false);
   const [showBottomButton, setShowBottomButton] = useState(false);
+  const ref = useRef(null);
+  const target = useInView(ref, { once: true });
+  const animate = useAnimation();
+  const transition = {
+    duration: 0.5,
+    delay: 0.1,
+  };
+  useEffect(() => {
+    if (target) {
+      animate.start("end");
+    }
+  }, [target, animate]);
 
   const options = [
     { label: "New", value: "New" },
@@ -40,16 +53,16 @@ const Home = () => {
   };
   const handleSelectChangeCities = (value) => {
     setSelectedCities(value);
-    console.log(`The selected city is : ${value}`);
+    console.log(`The selected city is : ${selectedCities}`);
   };
 
   const handleSelectChangeDomain = (value) => {
     setSelectedDomains(value);
-    console.log(`The selected Domain is : ${value}`);
+    console.log(`The selected Domain is : ${selectedDomains}`);
   };
   const handleSelectChangeEducation = (value) => {
     setSelectedEducation(value);
-    console.log(`The selected education is : ${value}`);
+    console.log(`The selected education is : ${selectedEducation}`);
   };
 
   // scroll button
@@ -115,6 +128,7 @@ const Home = () => {
   // change page and data
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
+    scrollToTop();
   };
 
   // search in whit title and discriptioin
@@ -174,7 +188,25 @@ const Home = () => {
           <IoIosArrowDropdownCircle className="scroll-icon"></IoIosArrowDropdownCircle>
         </button>
       </div>
-      <div className="left">
+      <motion.div
+        className="left"
+        ref={ref}
+        variants={{
+          start: {
+            opacity: 0,
+            scale: 0.8,
+            x: 100,
+          },
+          end: {
+            opacity: 1,
+            scale: 1,
+            x: 10,
+          },
+        }}
+        initial="start"
+        animate={animate}
+        transition={transition}
+      >
         <h1>Filter</h1>
         <div className="row">
           <div className="sub-row">
@@ -204,21 +236,37 @@ const Home = () => {
               />
             </div>
             <div className="col sub-row search-box">
-            <div className="form">
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={handleSearchQueryChange}
-              />
+              <div className="form">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={handleSearchQueryChange}
+                />
+              </div>
             </div>
           </div>
-          </div>
-
-          
         </div>
-      </div>
-      <div className="right">
+      </motion.div>
+      <motion.div
+        className="right"
+        ref={ref}
+        variants={{
+          start: {
+            opacity: 0,
+            scale: 0.8,
+            x: 100,
+          },
+          end: {
+            opacity: 1,
+            scale: 1,
+            x: 10,
+          },
+        }}
+        initial="start"
+        animate={animate}
+        transition={transition}
+      >
         <div className="row search-row">
           <div className="col search">
             <h1>Search</h1>
@@ -262,7 +310,7 @@ const Home = () => {
         ) : (
           <></>
         )}
-      </div>
+      </motion.div>
       <div
         className="scroll-top"
         style={{ display: showBottomButton ? "block" : "none" }}

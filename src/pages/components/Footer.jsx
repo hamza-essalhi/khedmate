@@ -6,11 +6,42 @@ import {
 import bannerImage from "../../images/banner.png";
 
 import { Link } from "react-router-dom";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const Footer = () => {
   const authenticated = false;
+  const ref = useRef(null);
+  const target = useInView(ref, { once: true });
+  const animate = useAnimation();
+  const transition = {
+    duration: 0.5,
+    delay: 0.1,
+  };
+  useEffect(() => {
+    if (target) {
+      animate.start("end");
+    }
+  }, [target,animate]);
   return (
-    <footer className="main-footer">
+    <motion.footer className="main-footer"
+    ref={ref}
+      variants={{
+        start: {
+          opacity: 0,
+          scale: 0.8,
+          x: -100,
+        },
+        end: {
+          opacity: 1,
+          scale: 1,
+          x: 0,
+        },
+      }}
+      initial="start"
+      animate={animate}
+      transition={transition}
+    >
       <div className="top">
         <img src={bannerImage} alt="" />
         
@@ -22,10 +53,10 @@ const Footer = () => {
           </li>
 
           <li>
-            <Link>About Us</Link>
+            <Link to='about-us'>About Us</Link>
           </li>
           <li>
-            <Link>Contact Us</Link>
+            <Link to='contact-us'>Contact Us</Link>
           </li>
           {!authenticated ? (
             <>
@@ -55,7 +86,7 @@ const Footer = () => {
           </h5>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

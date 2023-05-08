@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import jobImage from "../../images/user.jpg";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 const JobPost = () => {
   const { id } = useParams();
@@ -10,18 +11,32 @@ const JobPost = () => {
   const [job, setJob] = useState([]);
   const [jobPost, setJobPost] = useState([]);
   const [like, setLike] = useState(false);
+  const ref = useRef(null);
+  const target = useInView(ref, { once: true });
+  const animate = useAnimation();
+  const transition = {
+    duration: 0.5,
+    delay: 0.1,
+  };
+  useEffect(() => {
+    if (target) {
+      animate.start("end");
+    }
+  }, [target, animate]);
 
   useEffect(() => {
     axios
-    .get("http://localhost:3000/job-post.json")
-    .then((response) => {
-      const jobPosts = response.data;
-      const filteredJobPost = jobPosts.filter((jobPost) => jobPost.id === parseInt(id));
-      setJobPost(filteredJobPost[0]);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .get("http://localhost:3000/job-post.json")
+      .then((response) => {
+        const jobPosts = response.data;
+        const filteredJobPost = jobPosts.filter(
+          (jobPost) => jobPost.id === parseInt(id)
+        );
+        setJobPost(filteredJobPost[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     axios
       .get("http://localhost:3000/users.json")
       .then((response) => {
@@ -67,12 +82,66 @@ const JobPost = () => {
   };
 
   return (
-    <div className="job-post">
+    <motion.div
+      className="job-post"
+      ref={ref}
+      variants={{
+        start: {
+          opacity: 0,
+          scale: 0.8,
+          x: 100,
+        },
+        end: {
+          opacity: 1,
+          scale: 1,
+          x: 10,
+        },
+      }}
+      initial="start"
+      animate={animate}
+      transition={transition}
+    >
       <div className="sub-row">
-        <div className="col job-data">
+        <motion.div
+          className="col job-data"
+          variants={{
+            start: {
+              opacity: 0,
+              y: -100,
+            },
+            end: {
+              opacity: 1,
+              y: 0,
+            },
+          }}
+          initial="start"
+          animate={animate}
+          transition={{
+            duration: 0.5,
+            delay: 0.4,
+          }}
+        >
           <img src={jobImage} alt="" />
-        </div>
-        <div className="col date">
+        </motion.div>
+        <motion.div
+          className="col date"
+          variants={{
+            start: {
+              opacity: 0,
+              y: -100,
+            },
+            end: {
+              opacity: 1,
+              y: 0,
+            },
+          }}
+          initial="start"
+          animate={animate}
+          transition={{
+            duration: 0.5,
+            delay: 0.6,
+          }}
+        >
           <h3>{job.jobe_title}</h3>
           <div className="sub-row">
             <span>
@@ -81,8 +150,26 @@ const JobPost = () => {
             <span>City: {job.city}</span>
             <span>Published on: {job.date}</span>
           </div>
-        </div>
-        <div className="col like">
+        </motion.div>
+        <motion.div
+          className="col like"
+          variants={{
+            start: {
+              opacity: 0,
+              y: -100,
+            },
+            end: {
+              opacity: 1,
+              y: 0,
+            },
+          }}
+          initial="start"
+          animate={animate}
+          transition={{
+            duration: 0.5,
+            delay: 0.8,
+          }}
+        >
           {!like ? (
             <AiOutlineHeart
               className="like-btn"
@@ -94,43 +181,73 @@ const JobPost = () => {
               onClick={handleLike}
             ></AiFillHeart>
           )}
-        </div>
+        </motion.div>
       </div>
-      <div className=" job-details">
+      <motion.div
+        className=" job-details"
+        variants={{
+          start: {
+            opacity: 0,
+            y: -100,
+          },
+          end: {
+            opacity: 1,
+            y: 0,
+          },
+        }}
+        initial="start"
+        animate={animate}
+        transition={{
+          duration: 0.5,
+          delay: 0.9,
+        }}
+      >
         <span>{job.job_description}</span>
         <div className="sub-row">
-            <span>
-            Domain: {jobPost.domain?.slice(0, 10)}
-            </span>
-            <span>Experience: {parseInt(jobPost.experience)} Years</span>
-            <span>Fonction: {job.domain}</span>
-          </div>
-          <div className="sub-row">
-            <span>
-            Contract: CDI
-            </span>
-            <span>Type: {jobPost.type}</span>
-            <span>Company: {jobPost.company}</span>
-          </div>
-          <div className="sub-row">
-            <span>
-            Salaire: {jobPost.salaire} DH
-            </span>
-            <span>Formation: {jobPost.formation} mounths</span>
-            <span>Education level: {jobPost.education}</span>
-          </div>
+          <span>Domain: {jobPost.domain?.slice(0, 10)}</span>
+          <span>Experience: {parseInt(jobPost.experience)} Years</span>
+          <span>Fonction: {job.domain}</span>
+        </div>
+        <div className="sub-row">
+          <span>Contract: CDI</span>
+          <span>Type: {jobPost.type}</span>
+          <span>Company: {jobPost.company}</span>
+        </div>
+        <div className="sub-row">
+          <span>Salaire: {jobPost.salaire} DH</span>
+          <span>Formation: {jobPost.formation} mounths</span>
+          <span>Education level: {jobPost.education}</span>
+        </div>
         <Link>Apply Now</Link>
-      </div>
+      </motion.div>
 
-      <div className="sub-col key-words">
+      <motion.div
+        className="sub-col key-words"
+        variants={{
+          start: {
+            opacity: 0,
+            y: -100,
+          },
+          end: {
+            opacity: 1,
+            y: 0,
+          },
+        }}
+        initial="start"
+        animate={animate}
+        transition={{
+          duration: 0.5,
+          delay: 1,
+        }}
+      >
         <h3>keywords:</h3>
         <div className="col-key-words">
-            {job.key_words?.map((keyword, index) => (
-          <span key={index}>{keyword}</span>
-        ))}
+          {job.key_words?.map((keyword, index) => (
+            <span key={index}>{keyword}</span>
+          ))}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

@@ -173,7 +173,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 body {
-  background-color: #776d6d;
+  background-color: rgba(119, 109, 109, 0.1843137255);
 }
 
 .main-nav-bar {
@@ -2091,6 +2091,125 @@ body {
   100% {
     transform: translateX(0);
   }
+}
+
+.about-us, .contact-us {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 2em;
+  padding: 10px;
+}
+.about-us .col, .contact-us .col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-us .col .sub-col, .contact-us .col .sub-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  padding: 20px;
+}
+.about-us .col .sub-col img, .contact-us .col .sub-col img {
+  width: 40%;
+}
+.about-us .col form, .contact-us .col form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 3em;
+}
+.about-us .col form label, .about-us .col form input, .about-us .col form textarea, .about-us .col form .btn, .contact-us .col form label, .contact-us .col form input, .contact-us .col form textarea, .contact-us .col form .btn {
+  margin: 0.5em;
+}
+.about-us .col form textarea, .contact-us .col form textarea {
+  resize: none;
+}
+.about-us .col form input, .about-us .col form textarea, .contact-us .col form input, .contact-us .col form textarea {
+  border: 2px #fc6e5e solid;
+  border-radius: 10px;
+  padding: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+.about-us .col form input:hover, .about-us .col form input:active, .about-us .col form input :focus, .about-us .col form textarea:hover, .about-us .col form textarea:active, .about-us .col form textarea :focus, .contact-us .col form input:hover, .contact-us .col form input:active, .contact-us .col form input :focus, .contact-us .col form textarea:hover, .contact-us .col form textarea:active, .contact-us .col form textarea :focus {
+  border-color: rgba(0, 247, 255, 0.8705882353);
+  outline: none;
+}
+.about-us .col form input:hover label, .about-us .col form input:active label, .about-us .col form input :focus label, .about-us .col form textarea:hover label, .about-us .col form textarea:active label, .about-us .col form textarea :focus label, .contact-us .col form input:hover label, .contact-us .col form input:active label, .contact-us .col form input :focus label, .contact-us .col form textarea:hover label, .contact-us .col form textarea:active label, .contact-us .col form textarea :focus label {
+  color: #00ff85;
+}
+.about-us .col form button, .contact-us .col form button {
+  width: 40%;
+  height: auto;
+  background-color: #fc6e5e;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  transition: 0.3s;
+  padding: 15px;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.about-us .col form button:hover, .contact-us .col form button:hover {
+  background-color: #e36355;
+  color: white;
+}
+.about-us .col form button:active, .contact-us .col form button:active {
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.about-us .col form .btn, .contact-us .col form .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-footer {
