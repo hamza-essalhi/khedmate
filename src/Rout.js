@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import MainNavBar from "./pages/components/MainNavBar";
-// import Footer from "./pages/components/Footer";
+import Footer from "./pages/components/Footer";
 
 const Rout = () => {
   return (
@@ -10,7 +10,7 @@ const Rout = () => {
       {/* content */}
       <Outlet />
 
-      {/* <Footer/> */}
+      <Footer/>
     </>
   );
 };
