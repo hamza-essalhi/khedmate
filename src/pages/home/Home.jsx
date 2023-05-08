@@ -36,7 +36,7 @@ const Home = () => {
   // get select from Select componenets
   const handleSelectChange = (value) => {
     setSelectedOption(value);
-    setSearchQuery('')
+    setSearchQuery("");
   };
   const handleSelectChangeCities = (value) => {
     setSelectedCities(value);
@@ -53,7 +53,6 @@ const Home = () => {
   };
 
   // scroll button
-  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,8 +60,8 @@ const Home = () => {
         Math.ceil(window.innerHeight + window.scrollY) >=
         document.body.scrollHeight;
       setShowTopButton(!isBottom);
-      const isTop=window.scrollY==0;
-      setShowBottomButton(!isTop)
+      const isTop = window.scrollY === 0;
+      setShowBottomButton(!isTop);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -77,6 +76,8 @@ const Home = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  // fetch data
   useEffect(() => {
     axios
       .get("./users.json")
@@ -115,13 +116,11 @@ const Home = () => {
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  
 
   // search in whit title and discriptioin
 
   const handleSearchQueryChange = (e) => {
     const query = e.target.value;
-    const selectedOptionChange = selectedOption ? true : false
     setSearchQuery(query);
     let filteredUsers = mergedData.filter(
       (user) =>
@@ -168,42 +167,59 @@ const Home = () => {
   return (
     <div className="home container">
       <div className="scroll-bottom">
-        <button onClick={scrollToBottom}  style={{ display: showTopButton ? "block" : "none" }}>
+        <button
+          onClick={scrollToBottom}
+          style={{ display: showTopButton ? "block" : "none" }}
+        >
           <IoIosArrowDropdownCircle className="scroll-icon"></IoIosArrowDropdownCircle>
         </button>
       </div>
       <div className="left">
         <h1>Filter</h1>
         <div className="row">
-          <div className="col">
-            <h4>Cities</h4>
-            <Select
-              options={cities}
-              defaultValue="Select"
-              onChange={handleSelectChangeCities}
-            />
+          <div className="sub-row">
+            <div className="col">
+              <h4>Cities</h4>
+              <Select
+                options={cities}
+                defaultValue="Select"
+                onChange={handleSelectChangeCities}
+              />
+            </div>
+            <div className="col">
+              <h4>Domain</h4>
+              <Select
+                options={domain}
+                defaultValue="Select"
+                onChange={handleSelectChangeDomain}
+              />
+            </div>
+
+            <div className="col">
+              <h4>Educations</h4>
+              <Select
+                options={education}
+                defaultValue="Select"
+                onChange={handleSelectChangeEducation}
+              />
+            </div>
+            <div className="col sub-row search-box">
+            <div className="form">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={handleSearchQueryChange}
+              />
+            </div>
           </div>
-          <div className="col">
-            <h4>Domain</h4>
-            <Select
-              options={domain}
-              defaultValue="Select"
-              onChange={handleSelectChangeDomain}
-            />
           </div>
+
           
-          <div className="col">
-            <h4>Educations</h4>
-            <Select
-              options={education}
-              defaultValue="Select"
-              onChange={handleSelectChangeEducation}
-            />
-          </div>
         </div>
       </div>
       <div className="right">
-        <div className="row">
+        <div className="row search-row">
           <div className="col search">
             <h1>Search</h1>
           </div>
@@ -215,11 +231,13 @@ const Home = () => {
                 value={searchQuery}
                 onChange={handleSearchQueryChange}
               />
-              <Select
-                options={options}
-                defaultValue="Select"
-                onChange={handleSelectChange}
-              />
+              <div style={{ display: "none" }}>
+                <Select
+                  options={options}
+                  defaultValue="Select"
+                  onChange={handleSelectChange}
+                />
+              </div>
             </div>
           </div>
           <div className="col job-result">
@@ -245,8 +263,11 @@ const Home = () => {
           <></>
         )}
       </div>
-      <div className="scroll-top" style={{ display: showBottomButton ? "block" : "none" }}>
-        <button onClick={scrollToTop} >
+      <div
+        className="scroll-top"
+        style={{ display: showBottomButton ? "block" : "none" }}
+      >
+        <button onClick={scrollToTop}>
           <IoIosArrowDropupCircle className="scroll-icon"></IoIosArrowDropupCircle>
         </button>
       </div>

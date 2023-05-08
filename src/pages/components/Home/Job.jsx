@@ -17,6 +17,7 @@ const Job = (props) => {
       !like
     );
     setLike(!like);
+    console.log(user.job.id)
   };
 
   return (
@@ -52,7 +53,7 @@ const Job = (props) => {
       <div className="sub-row job-details">
         <span>{user.job?.job_description}</span>
 
-        <Link>Apply Now</Link>
+        <Link to={'job/'+user.job?.id}>Apply Now</Link>
       </div>
 
       <div className="sub-col key-words">

@@ -463,13 +463,32 @@ body {
   }
 }
 
-@media only screen and (max-width: 870px) {
+@media only screen and (max-width: 960px) {
   .main-nav-bar .banner img {
     display: none;
   }
   .main-nav-bar .banner .text-banner {
     display: flex;
     align-items: center;
+  }
+  .home {
+    flex-direction: column;
+  }
+  .home .left h1 {
+    margin: 0.3em !important;
+  }
+  .home .left .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .home .left .row .search-box {
+    display: flex !important;
+  }
+  .home .left .row .col {
+    margin: 0 0.5em !important;
+  }
+  .home .right .search-row {
+    display: none !important;
   }
 }
 @media screen and (max-width: 700px) {
@@ -946,6 +965,26 @@ body {
       height: 70px;
     }
   }
+  .home {
+    flex-direction: column;
+  }
+  .home .left h1 {
+    margin: 0.3em !important;
+  }
+  .home .left .row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .home .left .row .search-box {
+    display: flex !important;
+  }
+  .home .left .row .col {
+    margin: 0 0.5em !important;
+  }
+  .home .right .search-row {
+    display: none !important;
+  }
 }
 .home {
   display: flex;
@@ -1057,6 +1096,12 @@ body {
   padding: 20px;
   height: max-content;
 }
+.home .left h1 {
+  margin: 1em;
+}
+.home .left .row .search-box {
+  display: none;
+}
 .home .left .row .col {
   margin-top: 2em;
 }
@@ -1116,6 +1161,87 @@ body {
     height: 0;
   }
 }
+.home .left .form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home .left .form input {
+  width: 90%;
+  background-color: #fff1ef;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  border: 2px transparent solid;
+  outline: none;
+  transition: 0.3s;
+}
+.home .left .form input:hover, .home .left .form input:active, .home .left .form input:focus {
+  outline: none;
+  border: none;
+  border: 2px #fc6e5e solid;
+}
+.home .left .form button {
+  width: auto;
+  height: auto;
+  background-color: #fc6e5e;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  transition: 0.3s;
+  padding: 15px;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.home .left .form button:hover {
+  background-color: #e36355;
+  color: white;
+}
+.home .left .form button:active {
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 .home .right {
   flex: 3;
 }
@@ -1149,6 +1275,7 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .home .right .row .search-box .form input {
   width: 90%;
@@ -1225,6 +1352,9 @@ body {
     transform: translateX(0);
   }
 }
+.home .right .row .job-result {
+  justify-content: center;
+}
 .home .right .row .job-result h4 {
   width: 90%;
   background-color: #fff1ef;
@@ -1242,6 +1372,9 @@ body {
   outline: none;
   border: none;
   border: 2px #fc6e5e solid;
+}
+.home .right h1 {
+  margin: 1em;
 }
 .home .right .job-box .sub-row {
   width: 100%;
@@ -1564,6 +1697,366 @@ body {
   color: black;
 }
 .home .right .pagination ul .active button:active {
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.job-post {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 2em;
+  padding: 10px;
+}
+.job-post .sub-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.job-post .sub-row .col {
+  width: 100%;
+  flex: 1;
+}
+.job-post .sub-row .col img {
+  width: 100px;
+  border-radius: 100%;
+  margin: 1em;
+}
+.job-post .sub-row .col.job-data {
+  flex: 1;
+  margin: 1em;
+}
+.job-post .sub-row .col.date {
+  margin: 20px;
+  flex: 5;
+  justify-content: center;
+}
+.job-post .sub-row .col.date h3 {
+  font-size: 25px;
+  margin: 1em;
+}
+.job-post .sub-row .col.date .sub-row {
+  justify-content: space-between;
+}
+.job-post .sub-row .col.date .sub-row span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  height: auto;
+  background-color: #fff1ef;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  border: none;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  transition: 0.3s;
+  padding: 15px;
+  margin: 1em;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.job-post .sub-row .col.date .sub-row span:hover {
+  background-color: #e6d9d7;
+  color: white;
+}
+.job-post .sub-row .col.date .sub-row span:active {
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.job-post .sub-row .col.like {
+  margin: 1em;
+  display: flex;
+  justify-content: end;
+  font-size: 40px;
+}
+.job-post .sub-row .col.like .like-btn {
+  font-size: 40px;
+  color: #fc6e5e;
+  border-radius: 10px;
+  border: none;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  transition: 0.3s;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.job-post .sub-row .col.like .like-btn:hover {
+  color: #e36355;
+}
+.job-post .job-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5em;
+}
+.job-post .job-details a {
+  width: 40%;
+  height: auto;
+  background-color: #fc6e5e;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 5em;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.job-post .job-details a:hover {
+  background-color: #e36355;
+  color: white;
+}
+.job-post .job-details a:active {
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.job-post .job-details span {
+  width: 70%;
+}
+.job-post .job-details .sub-row {
+  width: 70%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2em;
+}
+.job-post .job-details .sub-row span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: auto;
+  background-color: #fff1ef;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  border: none;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  transition: 0.3s;
+  padding: 15px;
+  margin: 1em;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.job-post .job-details .sub-row span:hover {
+  background-color: #e6d9d7;
+  color: white;
+}
+.job-post .job-details .sub-row span:active {
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.job-post .key-words {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4em 0;
+  padding: 10px;
+}
+.job-post .key-words .col-key-words {
+  display: flex;
+}
+.job-post .key-words .col-key-words span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: auto;
+  background-color: #fff1ef;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  border: none;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  transition: 0.3s;
+  padding: 15px;
+  margin: 1em;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.job-post .key-words .col-key-words span:hover {
+  background-color: #e6d9d7;
+  color: white;
+}
+.job-post .key-words .col-key-words span:active {
   animation: shake 0.8s ease-in-out;
   animation-fill-mode: forwards;
 }

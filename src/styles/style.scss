@@ -160,7 +160,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 870px) {
+@media only screen and (max-width: 960px) {
   .main-nav-bar {
     .banner {
       img {
@@ -168,6 +168,29 @@ body {
       }
       .text-banner {
         @include flex($col: false, $v-center: true, $h-center: false);
+      }
+    }
+  }
+  .home {
+    flex-direction: column;
+    .left {
+      h1 {
+        margin: 0.3em !important;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        .search-box {
+          display: flex !important;
+        }
+        .col {
+          margin: 0 0.5em !important;
+        }
+      }
+    }
+    .right {
+      .search-row {
+        display: none !important;
       }
     }
   }
@@ -435,6 +458,30 @@ body {
       }
     }
   }
+  .home {
+    flex-direction: column;
+    .left {
+      h1 {
+        margin: 0.3em !important;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        .search-box {
+          display: flex !important;
+        }
+        .col {
+          margin: 0 0.5em !important;
+        }
+      }
+    }
+    .right {
+      .search-row {
+        display: none !important;
+      }
+    }
+  }
 }
 .home {
   @include flex($col: false, $v-center: false, $h-center: false);
@@ -445,40 +492,37 @@ body {
     position: fixed;
     right: 0;
     z-index: 5;
-    
-    button{
+
+    button {
       background-color: transparent;
-      animation: scroll-btn-animation  .3s ease-in;
+      animation: scroll-btn-animation 0.3s ease-in;
       transition: 0.3s;
-      &:hover{
+      &:hover {
         transform: scale(1.09);
       }
-    @keyframes scroll-btn-animation {
-      from {
-        opacity: 0;
-       
-      }
-      to {
-        opacity: 1;
-        
+      @keyframes scroll-btn-animation {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
     }
-    }
-    .scroll-icon{
+    .scroll-icon {
       @include btn($btn-bg, white, auto, auto);
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       padding: 5px;
       font-size: 20px;
-      
     }
   }
   .scroll-top {
     bottom: 0;
   }
-  .scroll-bottom{
+  .scroll-bottom {
     top: 3em;
   }
-  
+
   .left,
   .right {
     margin: 2em;
@@ -489,7 +533,13 @@ body {
     background-color: white;
     padding: 20px;
     height: max-content;
+    h1 {
+      margin: 1em;
+    }
     .row {
+      .search-box {
+        display: none;
+      }
       .col {
         margin-top: 2em;
         h4 {
@@ -504,9 +554,8 @@ body {
             animation: select-animation 0.2s ease-in;
             box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
             &::-webkit-scrollbar-track {
-             
               box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
-              background-color: white
+              background-color: white;
             }
 
             &::-webkit-scrollbar {
@@ -516,11 +565,11 @@ body {
 
             &::-webkit-scrollbar-thumb {
               box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
-              background-color:mix($btn-bg , black ,60%) ;
+              background-color: mix($btn-bg, black, 60%);
               border-radius: 3px;
               padding: 10px;
-              &:hover{
-                background-color:mix($btn-bg , black ,20%) ;
+              &:hover {
+                background-color: mix($btn-bg, black, 20%);
               }
             }
             li {
@@ -554,6 +603,17 @@ body {
         }
       }
     }
+    .form {
+      width: 100%;
+      @include flex($col: false, $v-center: true, $h-center: true);
+      input {
+        @include input;
+      }
+      button {
+        @include btn($btn-bg, white, auto, auto);
+        padding: 15px;
+      }
+    }
   }
   .right {
     flex: 3;
@@ -578,7 +638,7 @@ body {
         margin-top: 30px;
         .form {
           width: 100%;
-          @include flex($col: false, $v-center: true, $h-center: false);
+          @include flex($col: false, $v-center: true, $h-center: true);
           input {
             @include input;
           }
@@ -589,6 +649,7 @@ body {
         }
       }
       .job-result {
+        justify-content: center;
         h4 {
           @include input;
           text-align: center;
@@ -597,7 +658,9 @@ body {
         }
       }
     }
-
+    h1 {
+      margin: 1em;
+    }
     .job-box {
       .sub-row {
         width: 100%;
@@ -688,6 +751,110 @@ body {
         }
       }
     }
+  }
+}
+
+.job-post {
+  background-color: white;
+  @include flex($col: true, $v-center: false, $h-center: false);
+  border-radius: 10px;
+  margin: 2em;
+  padding: 10px;
+
+  .sub-row {
+    width: 100%;
+    @include flex($col: false, $v-center: false, $h-center: true);
+
+    .col {
+      width: 100%;
+      flex: 1;
+      img {
+        width: 100px;
+        border-radius: 100%;
+        margin: 1em;
+      }
+      &.job-data {
+        flex: 1;
+        margin: 1em;
+      }
+      &.date {
+        margin: 20px;
+        flex: 5;
+        justify-content: center;
+        h3{
+          font-size: 25px;
+          margin: 1em;
+        }
+        .sub-row{
+          justify-content: space-between;
+          span {
+            @include flex($col: false, $v-center: true, $h-center: true);
+            @include btn($input-bg, rgb(0, 0, 0), max-content, auto);
+            padding: 15px;
+            margin: 1em;
+          }
+        }
+      }
+      &.like {
+        margin: 1em;
+        display: flex;
+        justify-content: end;
+        
+        font-size: 40px;
+        .like-btn {
+          font-size: 40px;
+          @include btn-nbg($btn-bg);
+        }
+      }
+    }
+  }
+  .job-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5em;
+    
+    a {
+      @include btn($btn-bg, white, 40%, auto);
+      @include flex($col: false, $v-center: true, $h-center: true);
+      padding: 10px;
+      margin-top: 5em;
+    }
+    span{
+      width: 70%;
+    }
+    .sub-row{
+      width: 70%;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 2em;
+      span {
+        @include flex($col: false, $v-center: true, $h-center: true);
+        @include btn($input-bg, rgb(0, 0, 0), 200px, auto);
+        padding: 15px;
+        margin: 1em;
+      }
+    }
+  }
+  .key-words {
+    width: 100%;
+    @include flex($col: true, $v-center: true, $h-center: false);
+    
+    margin: 4em 0;
+    padding: 10px;
+    .col-key-words
+    {
+      @include flex($col: false, $v-center: false, $h-center: false);
+      span {
+        @include flex($col: false, $v-center: true, $h-center: true);
+        @include btn($input-bg, rgb(0, 0, 0), 200px, auto);
+        padding: 15px;
+        margin: 1em;
+      }
+    }
+    
+   
   }
 }
 
