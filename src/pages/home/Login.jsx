@@ -1,10 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { motion, useAnimation, useInView } from "framer-motion";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-const ContactUs = () => {
-  document.title = 'Contact Us';
+const Login = () => {
+  document.title = "Login";
   const ref = useRef(null);
+  const [showPassword, setShowPassword] = useState(false);
   const target = useInView(ref, { once: true });
   const animate = useAnimation();
   const transition = {
@@ -16,10 +18,14 @@ const ContactUs = () => {
       animate.start("end");
     }
   }, [target, animate]);
-
+  const handlePassword = (e) => {
+    const input =document.querySelector('#password-input')
+    setShowPassword(!showPassword);
+   input.type=!showPassword ? 'text' : 'password';
+  };
   return (
     <motion.div
-      className="contact-us"
+      className="auth"
       ref={ref}
       variants={{
         start: {
@@ -38,7 +44,46 @@ const ContactUs = () => {
       transition={transition}
     >
       <motion.div
-        className=" col"
+        className=" col left"
+        variants={{
+          start: {
+            opacity: 0,
+            y: -100,
+          },
+          end: {
+            opacity: 1,
+            y: 0,
+          },
+        }}
+        initial="start"
+        animate={animate}
+        transition={{
+          duration: 0.5,
+          delay: 0.4,
+        }}
+      >
+        <motion.div
+          className="sub-col"
+          variants={{
+            start: {
+              opacity: 0,
+              y: -100,
+            },
+            end: {
+              opacity: 1,
+              y: 0,
+            },
+          }}
+          initial="start"
+          animate={animate}
+          transition={{
+            duration: 0.5,
+            delay: 0.6,
+          }}
+        ></motion.div>
+      </motion.div>
+      <motion.div
+        className=" col right"
         variants={{
           start: {
             opacity: 0,
@@ -79,12 +124,12 @@ const ContactUs = () => {
             variants={{
               start: {
                 opacity: 0,
-               
+
                 x: -100,
               },
               end: {
                 opacity: 1,
-               
+
                 x: 0,
               },
             }}
@@ -95,7 +140,7 @@ const ContactUs = () => {
               delay: 0.8,
             }}
           >
-            Contat Us
+            Login
           </motion.h3>
           <motion.form
             action=""
@@ -116,16 +161,31 @@ const ContactUs = () => {
               delay: 1,
             }}
           >
-            <label htmlFor="">Full Name</label>
-            <input type="text" />
             <label htmlFor="">Email</label>
-            <input type="emai" />
-            <label htmlFor="">Your Message</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-            <div className="btn">
-            <button>Send</button>
+            <input type="email" name="email" placeholder="name@domain.com"/>
+            <label htmlFor="">Password</label>
+            <div className="input-group">
+              <input type="password" name="password" id="password-input" placeholder="Password..."/>
+              {showPassword ? (
+                <AiOutlineEyeInvisible
+                  className="password-icon"
+                  onClick={handlePassword}
+                ></AiOutlineEyeInvisible>
+              ) : (
+                <AiOutlineEye
+                  className="password-icon"
+                  onClick={handlePassword}
+                ></AiOutlineEye>
+              )}
             </div>
 
+            <div className="btn">
+              <button>Login</button>
+            </div>
+            <a href="/">Rest you Password</a>
+            <a href="sign-up">
+              You don't have account? <span>Sign Up</span>
+            </a>
           </motion.form>
         </motion.div>
       </motion.div>
@@ -133,4 +193,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default Login;

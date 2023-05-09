@@ -4,6 +4,7 @@ import userImage from "../../images/banner.png";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 const AboutUs = () => {
+  document.title = 'About Us';
   const ref = useRef(null);
   const target = useInView(ref, { once: true });
   const animate = useAnimation();

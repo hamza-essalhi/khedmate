@@ -5,13 +5,14 @@ import bannerImage from "../../images/banner.png";
 import userImage from "../../images/user.jpg";
 
 //Icons
-import { AiFillMessage } from "react-icons/ai";
+import { AiFillMessage, AiOutlineLogin } from "react-icons/ai";
 import {
   IoMdNotifications,
   IoMdSearch,
   IoMdMenu,
   IoMdSettings,
   IoMdLogOut,
+  IoMdPersonAdd,
 } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
 //utls
@@ -98,9 +99,11 @@ const MainNavBar = () => {
             <Link to="/">Home</Link>
           </li>
           {is_authenticated && (<li>
-            <Link to='about-us'>About Us</Link>
+            <Link to='/user'>Profile</Link>
           </li>)}
-          
+          <li>
+            <Link to='about-us'>About Us</Link>
+          </li>
           <li>
             <Link to='contact-us'>Contact Us</Link>
           </li>
@@ -123,20 +126,36 @@ const MainNavBar = () => {
           </li>
         </ul>
       </div>
-      <div className={userMenuOpen ? "user-menu-active" : "user-menu"} >
+      {
+        is_authenticated ? (
+          <div className={userMenuOpen ? "user-menu-active" : "user-menu"} >
         <Link to="/">
-          <FaUserAlt></FaUserAlt>
+          <FaUserAlt className="user-menu-icon"></FaUserAlt>
           Profile
         </Link>
         <Link to="/">
-          <IoMdSettings></IoMdSettings>
+          <IoMdSettings className="user-menu-icon"></IoMdSettings>
           Settings
         </Link>
         <Link to="/">
-          <IoMdLogOut></IoMdLogOut>
+          <IoMdLogOut className="user-menu-icon" ></IoMdLogOut>
           Logout
         </Link>
       </div>
+        ):(
+          <div className={userMenuOpen ? "user-menu-active login-menu" : "user-menu"} >
+        <Link to="/login">
+          <AiOutlineLogin className="user-menu-icon"></AiOutlineLogin>
+         login
+        </Link>
+        <Link to="/sign-up">
+          <IoMdPersonAdd className="user-menu-icon"></IoMdPersonAdd>
+          Sign Up
+        </Link>
+       
+      </div>
+        )
+      }
       <div className="menu">
         <button className="btn-menu" onClick={menuHandler} id="nav-button">
           {" "}

@@ -15,6 +15,7 @@ import axios from "axios";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 const Home = () => {
+  document.title = 'Home';
   const [users, setUsers] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -200,7 +201,7 @@ const Home = () => {
           end: {
             opacity: 1,
             scale: 1,
-            x: 10,
+            x: 0,
           },
         }}
         initial="start"
@@ -260,7 +261,7 @@ const Home = () => {
           end: {
             opacity: 1,
             scale: 1,
-            x: 10,
+            x: 0,
           },
         }}
         initial="start"

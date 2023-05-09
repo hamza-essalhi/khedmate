@@ -112,6 +112,9 @@ body {
     @include flex($col: true, $v-center: false, $h-center: false);
     @include shake;
     justify-content: space-between;
+    height: 100px;
+    max-height: 130px;
+    align-items: flex-start;
     margin: 10px 30px;
     padding: 10px;
     border-radius: 10px;
@@ -124,11 +127,11 @@ body {
     animation-duration: 0.5s;
 
     a {
+      width: 100%;
       color: white;
-      font-size: 20px;
+      font-size: 16px;
       display: flex;
       align-items: center;
-      justify-content: space-around;
       padding: 5px;
       border-radius: 5px;
       transition: 0.4s;
@@ -139,6 +142,10 @@ body {
         background-color: white;
         color: $btn-bg;
       }
+      .user-menu-icon{
+        margin-right: 1em;
+      }
+      
 
       @keyframes opAnimation {
         0% {
@@ -155,6 +162,19 @@ body {
       }
       to {
         height: 150px;
+      }
+    }
+  }
+  .login-menu{
+    height: 100px;
+    max-height: 90px;
+    align-items: flex-start;
+    a{
+      display: flex !important;
+      justify-content: flex-start;
+      width: 100%;
+      .user-menu-icon{
+        margin-right: 1em;
       }
     }
   }
@@ -230,6 +250,7 @@ body {
     .right {
       display: none;
     }
+    
   }
 
   .main-nav-active {
@@ -305,6 +326,9 @@ body {
         }
       }
     }
+    .login-menu{
+      height: 100px;
+    }
     .banner {
       img {
         display: flex;
@@ -320,7 +344,7 @@ body {
       position: absolute;
       right: 21px;
       margin: 20px 20px;
-      top: 1px;
+      top: 9px;
       .btn-menu {
         display: flex;
         @include flex($col: false, $v-center: true, $h-center: true);
@@ -385,6 +409,15 @@ body {
       }
     }
   }
+  .auth{
+    margin: 10px 10px !important;
+    .sub-col{
+      width: 100% !important;
+    }
+    .left{
+      display: none !important;
+    }
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -423,11 +456,14 @@ body {
       }
     }
   }
+  .login-menu{
+    height: 100px;
+  }
   .menu {
     position: absolute;
     right: 21px;
     margin: 20px 10px;
-    top: 1px;
+    top: 9px;
     .btn-menu {
       display: flex;
       @include flex($col: false, $v-center: true, $h-center: true);
@@ -554,7 +590,7 @@ body {
             animation: select-animation 0.2s ease-in;
             box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
             &::-webkit-scrollbar-track {
-              box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+              box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px ;
               background-color: white;
             }
 
@@ -868,7 +904,7 @@ body {
   }
 }
 
-.about-us,.contact-us {
+.about-us,.contact-us,.auth {
   background-color: white;
   @include flex($col: true, $v-center: false, $h-center: false);
   border-radius: 10px;
@@ -901,6 +937,7 @@ body {
       }
       input,textarea{
         border: 2px $btn-bg solid;
+        width: 100%;
         border-radius: 10px;
         padding: 15px;
         outline: none;
@@ -924,6 +961,159 @@ body {
       }
     }
     
+  }
+}
+
+.auth{
+  flex-direction: row;
+  padding: 0;
+  .sub-col{
+margin-top: 3em;
+  }
+  .left{
+    background-image: url('./images/login-banner.jpeg');
+    background-size: cover;
+    border-radius: 10px 0px 0px 10px;
+    
+  }
+  .right{
+    form{
+      width: 100%;
+      a{
+        padding:5px;
+        margin: 0.5em;
+        font-weight: bold;
+        color: $btn-bg;
+        span{
+          color: $success;
+        }
+      }
+      .input-group{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px $btn-bg solid;
+        border-radius: 10px;
+        margin: 0.5em;
+        padding: 0;
+        outline: none;
+        transition: .3s;
+        &:hover,&:active,:focus{
+          border-color: $info;
+          outline: none;
+          label{
+            color: $success
+          }
+        }
+        input{
+          width: 90%;
+          border: none;
+          margin: 0;
+
+        }
+        .password-icon{
+          margin: 0 0.3em;
+          font-size: 22px;
+          color: $btn-bg;
+          font-weight: bold;
+        }
+       
+      }
+      .error{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px red solid;
+        border-radius: 10px;
+        margin: 0.5em;
+        padding: 0;
+        outline: none;
+        box-shadow: rgb(223 0 0 / 15%) 0px 0px 20px 0px, rgb(223 0 0 / 15%) 1px 1px 20px 0px;
+        transition: .3s;
+        &:hover,&:active,:focus{
+          border-color: red;
+          outline: none;
+          label{
+            color: $success
+          }
+        }
+        input{
+          width: 90%;
+          border: none;
+          margin: 0;
+          color: red;
+
+        }
+        .password-icon{
+          margin: 0 0.3em;
+          font-size: 22px;
+          color: $btn-bg;
+          font-weight: bold;
+        }
+       
+      }
+      .input-error{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px red solid;
+        color: red;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 0.5em;
+        outline: none;
+        box-shadow:  rgb(223 0 0 / 15%) 0px 0px 20px 0px, rgb(223 0 0 / 15%) 1px 1px 20px 0px;
+        transition: .3s;
+        &:hover,&:active,:focus{
+          border-color: red;
+          outline: none;
+          
+        }
+      }
+      
+      .btn{
+        margin: 2em;
+      }
+    }
+  }
+}
+
+.user{
+  
+  @include flex($col: true, $v-center: false, $h-center: false);
+  
+  padding: 10px;
+  .row{
+    background-color: white;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 10px;
+    &.user-profile-menu{
+      padding: 0.5em;
+      .col{
+        @include flex($col:false, $v-center: true, $h-center: false);
+      justify-content: space-between;
+      .user-profile-icon{
+        width: 40px;height: 40px;
+        font-size: 40px;
+        color: $btn-bg;
+        margin:0 10px;
+        
+        &.active{
+          position: relative;
+          
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          background-color: white;
+          width: 60px;height: 60px;
+         padding: 6px;
+         border-radius: 100%;
+        }
+      }
+      }
+    }
   }
 }
 

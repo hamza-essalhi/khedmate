@@ -163,7 +163,7 @@ const Job = (props) => {
           delay: 0.9,
         }}
       >
-        <span>{user.job?.job_description.slice(0, 200)}</span>
+        <span>{user.job?.job_description.slice(0, 200)}...</span>
 
         <Link to={"job/" + user.job?.id}>Apply Now</Link>
       </motion.div>

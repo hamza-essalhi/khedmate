@@ -80,7 +80,7 @@ const JobPost = () => {
 
     localStorage.setItem("likedJobs", JSON.stringify(likedJobs));
   };
-
+  document.title = job.jobe_title;
   return (
     <motion.div
       className="job-post"
