@@ -18,19 +18,24 @@ const User = () => {
   const [education, setEducation] = useState(false);
   const [experience, setExperience] = useState(false);
   const [resume, setResume] = useState(false);
+  const [delay]=useState(0)
+  const [propsDelay,setDelay]=useState(0.7)
   const ref = useRef(null);
   const target = useInView(ref, { once: true });
   const animate = useAnimation();
   const transition = {
     duration: 0.5,
-    delay: 0.1,
+    delay: delay,
   };
   useEffect(() => {
     if (target) {
       animate.start("end");
+      
     }
+    
   }, [target, animate]);
   const handleProfileMenu = (target) => {
+    setDelay(0)
     switch (target) {
       case "experience":
         setExperience(true);
@@ -106,7 +111,7 @@ const User = () => {
         animate={animate}
         transition={{
           duration: 0.5,
-          delay: 0.4,
+          delay: delay+0.3,
         }}
       >
         {is_worker ? (
@@ -126,7 +131,7 @@ const User = () => {
             animate={animate}
             transition={{
               duration: 0.5,
-              delay: 0.5,
+              delay: delay+0.5,
             }}
             ><FaRegUserCircle
             className={
@@ -149,7 +154,7 @@ const User = () => {
             animate={animate}
             transition={{
               duration: 0.5,
-              delay: 0.6,
+              delay: delay+0.6,
             }}
             >
             <BsFillShieldLockFill
@@ -174,7 +179,7 @@ const User = () => {
             animate={animate}
             transition={{
               duration: 0.5,
-              delay: 0.7,
+              delay: delay+0.7,
             }}
             >
             <IoMdSchool
@@ -199,7 +204,7 @@ const User = () => {
             animate={animate}
             transition={{
               duration: 0.5,
-              delay: 0.8,
+              delay: delay+0.8,
             }}
             >
             <BsPersonWorkspace
@@ -224,7 +229,7 @@ const User = () => {
             animate={animate}
             transition={{
               duration: 0.5,
-              delay: 1,
+              delay: delay+1,
             }}
             >
             <IoMdDocument
@@ -239,31 +244,13 @@ const User = () => {
           <></>
         )}
       </motion.div>
-      <motion.div
-        className="row"
-        variants={{
-          start: {
-            opacity: 0,
-            y: -100,
-          },
-          end: {
-            opacity: 1,
-            y: 0,
-          },
-        }}
-        initial="start"
-        animate={animate}
-        transition={{
-          duration: 0.5,
-          delay: 0.4,
-        }}
-      >
-        {basics && <Basics />}
-        {auth && <Auth />}
-        {education&& <Education/>}
-        {experience&& <Experience/>}
-        {resume&& <Resume/>}
-      </motion.div>
+     
+        {basics && <Basics delay={propsDelay}/>}
+        {auth && <Auth/>}
+        {education&& <Education />}
+        {experience&& <Experience />}
+        {resume&& <Resume  />}
+     
     </motion.div>
   );
 };

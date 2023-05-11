@@ -2127,7 +2127,9 @@ body {
   }
 }
 
-.about-us, .contact-us, .auth {
+.about-us,
+.contact-us,
+.auth {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -2135,7 +2137,9 @@ body {
   margin: 2em;
   padding: 10px;
 }
-.about-us .col, .contact-us .col, .auth .col {
+.about-us .col,
+.contact-us .col,
+.auth .col {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -2143,7 +2147,9 @@ body {
   align-items: center;
   justify-content: center;
 }
-.about-us .col .sub-col, .contact-us .col .sub-col, .auth .col .sub-col {
+.about-us .col .sub-col,
+.contact-us .col .sub-col,
+.auth .col .sub-col {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2151,22 +2157,44 @@ body {
   width: 80%;
   padding: 20px;
 }
-.about-us .col .sub-col img, .contact-us .col .sub-col img, .auth .col .sub-col img {
+.about-us .col .sub-col img,
+.contact-us .col .sub-col img,
+.auth .col .sub-col img {
   width: 40%;
 }
-.about-us .col form, .contact-us .col form, .auth .col form {
+.about-us .col form,
+.contact-us .col form,
+.auth .col form {
   display: flex;
   flex-direction: column;
   width: 60%;
   margin: 3em;
 }
-.about-us .col form label, .about-us .col form input, .about-us .col form textarea, .about-us .col form .btn, .contact-us .col form label, .contact-us .col form input, .contact-us .col form textarea, .contact-us .col form .btn, .auth .col form label, .auth .col form input, .auth .col form textarea, .auth .col form .btn {
+.about-us .col form label,
+.about-us .col form input,
+.about-us .col form textarea,
+.about-us .col form .btn,
+.contact-us .col form label,
+.contact-us .col form input,
+.contact-us .col form textarea,
+.contact-us .col form .btn,
+.auth .col form label,
+.auth .col form input,
+.auth .col form textarea,
+.auth .col form .btn {
   margin: 0.5em;
 }
-.about-us .col form textarea, .contact-us .col form textarea, .auth .col form textarea {
+.about-us .col form textarea,
+.contact-us .col form textarea,
+.auth .col form textarea {
   resize: none;
 }
-.about-us .col form input, .about-us .col form textarea, .contact-us .col form input, .contact-us .col form textarea, .auth .col form input, .auth .col form textarea {
+.about-us .col form input,
+.about-us .col form textarea,
+.contact-us .col form input,
+.contact-us .col form textarea,
+.auth .col form input,
+.auth .col form textarea {
   border: 2px #fc6e5e solid;
   width: 100%;
   border-radius: 10px;
@@ -2174,14 +2202,48 @@ body {
   outline: none;
   transition: 0.3s;
 }
-.about-us .col form input:hover, .about-us .col form input:active, .about-us .col form input :focus, .about-us .col form textarea:hover, .about-us .col form textarea:active, .about-us .col form textarea :focus, .contact-us .col form input:hover, .contact-us .col form input:active, .contact-us .col form input :focus, .contact-us .col form textarea:hover, .contact-us .col form textarea:active, .contact-us .col form textarea :focus, .auth .col form input:hover, .auth .col form input:active, .auth .col form input :focus, .auth .col form textarea:hover, .auth .col form textarea:active, .auth .col form textarea :focus {
+.about-us .col form input:hover, .about-us .col form input:active,
+.about-us .col form input :focus,
+.about-us .col form textarea:hover,
+.about-us .col form textarea:active,
+.about-us .col form textarea :focus,
+.contact-us .col form input:hover,
+.contact-us .col form input:active,
+.contact-us .col form input :focus,
+.contact-us .col form textarea:hover,
+.contact-us .col form textarea:active,
+.contact-us .col form textarea :focus,
+.auth .col form input:hover,
+.auth .col form input:active,
+.auth .col form input :focus,
+.auth .col form textarea:hover,
+.auth .col form textarea:active,
+.auth .col form textarea :focus {
   border-color: rgba(0, 247, 255, 0.8705882353);
   outline: none;
 }
-.about-us .col form input:hover label, .about-us .col form input:active label, .about-us .col form input :focus label, .about-us .col form textarea:hover label, .about-us .col form textarea:active label, .about-us .col form textarea :focus label, .contact-us .col form input:hover label, .contact-us .col form input:active label, .contact-us .col form input :focus label, .contact-us .col form textarea:hover label, .contact-us .col form textarea:active label, .contact-us .col form textarea :focus label, .auth .col form input:hover label, .auth .col form input:active label, .auth .col form input :focus label, .auth .col form textarea:hover label, .auth .col form textarea:active label, .auth .col form textarea :focus label {
+.about-us .col form input:hover label, .about-us .col form input:active label,
+.about-us .col form input :focus label,
+.about-us .col form textarea:hover label,
+.about-us .col form textarea:active label,
+.about-us .col form textarea :focus label,
+.contact-us .col form input:hover label,
+.contact-us .col form input:active label,
+.contact-us .col form input :focus label,
+.contact-us .col form textarea:hover label,
+.contact-us .col form textarea:active label,
+.contact-us .col form textarea :focus label,
+.auth .col form input:hover label,
+.auth .col form input:active label,
+.auth .col form input :focus label,
+.auth .col form textarea:hover label,
+.auth .col form textarea:active label,
+.auth .col form textarea :focus label {
   color: #00ff85;
 }
-.about-us .col form button, .contact-us .col form button, .auth .col form button {
+.about-us .col form button,
+.contact-us .col form button,
+.auth .col form button {
   width: 40%;
   height: auto;
   background-color: #fc6e5e;
@@ -2213,11 +2275,15 @@ body {
     transform: translateX(0);
   }
 }
-.about-us .col form button:hover, .contact-us .col form button:hover, .auth .col form button:hover {
+.about-us .col form button:hover,
+.contact-us .col form button:hover,
+.auth .col form button:hover {
   background-color: #e36355;
   color: white;
 }
-.about-us .col form button:active, .contact-us .col form button:active, .auth .col form button:active {
+.about-us .col form button:active,
+.contact-us .col form button:active,
+.auth .col form button:active {
   animation: shake 0.8s ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -2241,7 +2307,9 @@ body {
     transform: translateX(0);
   }
 }
-.about-us .col form .btn, .contact-us .col form .btn, .auth .col form .btn {
+.about-us .col form .btn,
+.contact-us .col form .btn,
+.auth .col form .btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2283,11 +2351,13 @@ body {
   outline: none;
   transition: 0.3s;
 }
-.auth .right form .input-group:hover, .auth .right form .input-group:active, .auth .right form .input-group :focus {
+.auth .right form .input-group:hover, .auth .right form .input-group:active,
+.auth .right form .input-group :focus {
   border-color: rgba(0, 247, 255, 0.8705882353);
   outline: none;
 }
-.auth .right form .input-group:hover label, .auth .right form .input-group:active label, .auth .right form .input-group :focus label {
+.auth .right form .input-group:hover label, .auth .right form .input-group:active label,
+.auth .right form .input-group :focus label {
   color: #00ff85;
 }
 .auth .right form .input-group input {
@@ -2314,11 +2384,13 @@ body {
   box-shadow: rgba(223, 0, 0, 0.15) 0px 0px 20px 0px, rgba(223, 0, 0, 0.15) 1px 1px 20px 0px;
   transition: 0.3s;
 }
-.auth .right form .error:hover, .auth .right form .error:active, .auth .right form .error :focus {
+.auth .right form .error:hover, .auth .right form .error:active,
+.auth .right form .error :focus {
   border-color: red;
   outline: none;
 }
-.auth .right form .error:hover label, .auth .right form .error:active label, .auth .right form .error :focus label {
+.auth .right form .error:hover label, .auth .right form .error:active label,
+.auth .right form .error :focus label {
   color: #00ff85;
 }
 .auth .right form .error input {
@@ -2347,7 +2419,8 @@ body {
   box-shadow: rgba(223, 0, 0, 0.15) 0px 0px 20px 0px, rgba(223, 0, 0, 0.15) 1px 1px 20px 0px;
   transition: 0.3s;
 }
-.auth .right form .input-error:hover, .auth .right form .input-error:active, .auth .right form .input-error :focus {
+.auth .right form .input-error:hover, .auth .right form .input-error:active,
+.auth .right form .input-error :focus {
   border-color: red;
   outline: none;
 }
@@ -2389,6 +2462,207 @@ body {
   height: 60px;
   padding: 6px;
   border-radius: 100%;
+}
+.user .row.user-row-props .col form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.user .row.user-row-props .col form .image-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1em 0;
+}
+.user .row.user-row-props .col form .image-box img {
+  width: 150px;
+  border-radius: 100%;
+  border: 2px #00ff85 solid;
+}
+.user .row.user-row-props .col form .image-box .edit-icon {
+  padding: 3px;
+  position: relative;
+  bottom: 50px;
+  right: 30px;
+  width: 30px;
+  height: 30px;
+  background-color: #fc6e5e;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  transition: 0.3s;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.user .row.user-row-props .col form .image-box .edit-icon:hover {
+  background-color: #e36355;
+  color: white;
+}
+.user .row.user-row-props .col form .image-box .edit-icon:active {
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.user .row.user-row-props .col form .form-content {
+  width: 60% !important;
+  margin: 2em 0;
+}
+.user .row.user-row-props .col form .form-content label,
+.user .row.user-row-props .col form .form-content input,
+.user .row.user-row-props .col form .form-content textarea,
+.user .row.user-row-props .col form .form-content .btn {
+  margin: 0.5em;
+}
+.user .row.user-row-props .col form .form-content textarea {
+  resize: none;
+}
+.user .row.user-row-props .col form .form-content input,
+.user .row.user-row-props .col form .form-content textarea {
+  border: 2px #fc6e5e solid;
+  width: 100%;
+  border-radius: 10px;
+  padding: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+.user .row.user-row-props .col form .form-content input:hover, .user .row.user-row-props .col form .form-content input:active,
+.user .row.user-row-props .col form .form-content input :focus,
+.user .row.user-row-props .col form .form-content textarea:hover,
+.user .row.user-row-props .col form .form-content textarea:active,
+.user .row.user-row-props .col form .form-content textarea :focus {
+  border-color: rgba(0, 247, 255, 0.8705882353);
+  outline: none;
+}
+.user .row.user-row-props .col form .form-content input:hover label, .user .row.user-row-props .col form .form-content input:active label,
+.user .row.user-row-props .col form .form-content input :focus label,
+.user .row.user-row-props .col form .form-content textarea:hover label,
+.user .row.user-row-props .col form .form-content textarea:active label,
+.user .row.user-row-props .col form .form-content textarea :focus label {
+  color: #00ff85;
+}
+.user .row.user-row-props .col form .form-content button {
+  width: 40%;
+  height: auto;
+  background-color: #fc6e5e;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  transition: 0.3s;
+  padding: 15px;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.user .row.user-row-props .col form .form-content button:hover {
+  background-color: #e36355;
+  color: white;
+}
+.user .row.user-row-props .col form .form-content button:active {
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.user .row.user-row-props .col form .form-content .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user .row.user-row-props .col form .form-content .input-error {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px red solid;
+  color: red;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 0.5em;
+  outline: none;
+  box-shadow: rgba(223, 0, 0, 0.15) 0px 0px 20px 0px, rgba(223, 0, 0, 0.15) 1px 1px 20px 0px;
+  transition: 0.3s;
+}
+.user .row.user-row-props .col form .form-content .input-error:hover, .user .row.user-row-props .col form .form-content .input-error:active,
+.user .row.user-row-props .col form .form-content .input-error :focus {
+  border-color: red;
+  outline: none;
 }
 
 .main-footer {
