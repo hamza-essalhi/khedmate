@@ -117,7 +117,7 @@ const User = () => {
         {is_worker ? (
           <div className="col">
             <motion.div
-            variants={{
+            variants={!basics ? {
               start: {
                 opacity: 0,
                 y: -100,
@@ -126,12 +126,26 @@ const User = () => {
                 opacity: 1,
                 y: 0,
               },
-            }}
+            }:
+            {
+              start: {
+                opacity: 0,
+                y: -100,
+              },
+              end: {
+                opacity: 1,
+                y: 20,
+              },
+            }
+          }
             initial="start"
-            animate={animate}
-            transition={{
+            animate="end"
+            transition={!basics ?{
               duration: 0.5,
-              delay: delay+0.5,
+              delay: delay+0.2,
+            }:{
+              duration: 0.5,
+              delay: 0.2,
             }}
             ><FaRegUserCircle
             className={
