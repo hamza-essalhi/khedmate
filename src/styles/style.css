@@ -2737,6 +2737,83 @@ body {
   color: #fc6e5e;
   font-weight: bold;
 }
+.user .row.user-row-props .col form .form-content .key-words {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 4em 0;
+  padding: 10px;
+}
+.user .row.user-row-props .col form .form-content .key-words h3 {
+  margin: 1em;
+}
+.user .row.user-row-props .col form .form-content .key-words .col-key-words {
+  display: flex;
+}
+.user .row.user-row-props .col form .form-content .key-words .col-key-words span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: auto;
+  background-color: #00ff85;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  border: none;
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+  transition: 0.3s;
+  padding: 15px;
+  margin: 1em;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.user .row.user-row-props .col form .form-content .key-words .col-key-words span:hover {
+  background-color: #00e678;
+  color: black;
+}
+.user .row.user-row-props .col form .form-content .key-words .col-key-words span:active {
+  animation: shake 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-1px);
+  }
+  40% {
+    transform: translateX(1px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 
 .main-footer {
   background-color: white;

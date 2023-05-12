@@ -1272,6 +1272,26 @@ body {
                 font-weight: bold;
               }
             }
+            
+            .key-words {
+              width: 100%;
+              @include flex($col: true, $v-center: false, $h-center: false);
+          
+              margin: 4em 0;
+              padding: 10px;
+              h3{
+                margin: 1em;
+              }
+              .col-key-words {
+                @include flex($col: false, $v-center: false, $h-center: false);
+                span {
+                  @include flex($col: false, $v-center: true, $h-center: true);
+                  @include btn($success, rgb(0, 0, 0), 200px, auto);
+                  padding: 15px;
+                  margin: 1em;
+                }
+              }
+            }
           }
           
         }
