@@ -2463,11 +2463,18 @@ body {
   padding: 6px;
   border-radius: 100%;
 }
+.user .row.user-row-props .col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .user .row.user-row-props .col form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 .user .row.user-row-props .col form .image-box {
   display: flex;
@@ -2663,6 +2670,72 @@ body {
 .user .row.user-row-props .col form .form-content .input-error :focus {
   border-color: red;
   outline: none;
+}
+.user .row.user-row-props .col form .form-content .input-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px #fc6e5e solid;
+  border-radius: 10px;
+  margin: 0.5em;
+  padding: 0;
+  outline: none;
+  transition: 0.3s;
+}
+.user .row.user-row-props .col form .form-content .input-group:hover, .user .row.user-row-props .col form .form-content .input-group:active,
+.user .row.user-row-props .col form .form-content .input-group :focus {
+  border-color: rgba(0, 247, 255, 0.8705882353);
+  outline: none;
+}
+.user .row.user-row-props .col form .form-content .input-group:hover label, .user .row.user-row-props .col form .form-content .input-group:active label,
+.user .row.user-row-props .col form .form-content .input-group :focus label {
+  color: #00ff85;
+}
+.user .row.user-row-props .col form .form-content .input-group input {
+  width: 90%;
+  border: none;
+  margin: 0;
+}
+.user .row.user-row-props .col form .form-content .input-group .password-icon {
+  margin: 0 0.3em;
+  font-size: 22px;
+  color: #fc6e5e;
+  font-weight: bold;
+}
+.user .row.user-row-props .col form .form-content .error {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px red solid;
+  border-radius: 10px;
+  margin: 0.5em;
+  padding: 0;
+  outline: none;
+  box-shadow: rgba(223, 0, 0, 0.15) 0px 0px 20px 0px, rgba(223, 0, 0, 0.15) 1px 1px 20px 0px;
+  transition: 0.3s;
+}
+.user .row.user-row-props .col form .form-content .error:hover, .user .row.user-row-props .col form .form-content .error:active,
+.user .row.user-row-props .col form .form-content .error :focus {
+  border-color: red;
+  outline: none;
+}
+.user .row.user-row-props .col form .form-content .error:hover label, .user .row.user-row-props .col form .form-content .error:active label,
+.user .row.user-row-props .col form .form-content .error :focus label {
+  color: #00ff85;
+}
+.user .row.user-row-props .col form .form-content .error input {
+  width: 90%;
+  border: none;
+  margin: 0;
+  color: red;
+}
+.user .row.user-row-props .col form .form-content .error .password-icon {
+  margin: 0 0.3em;
+  font-size: 22px;
+  color: #fc6e5e;
+  font-weight: bold;
 }
 
 .main-footer {

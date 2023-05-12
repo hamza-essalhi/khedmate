@@ -17,9 +17,10 @@ const User = () => {
   const [auth, setAuth] = useState(false);
   const [education, setEducation] = useState(false);
   const [experience, setExperience] = useState(false);
+  
   const [resume, setResume] = useState(false);
-  const [delay]=useState(0)
-  const [propsDelay,setDelay]=useState(0.7)
+  const [delay] = useState(0);
+  const [propsDelay, setDelay] = useState(0.7);
   const ref = useRef(null);
   const target = useInView(ref, { once: true });
   const animate = useAnimation();
@@ -30,12 +31,10 @@ const User = () => {
   useEffect(() => {
     if (target) {
       animate.start("end");
-      
     }
-    
   }, [target, animate]);
   const handleProfileMenu = (target) => {
-    setDelay(0)
+    setDelay(0);
     switch (target) {
       case "experience":
         setExperience(true);
@@ -74,7 +73,7 @@ const User = () => {
         setResume(false);
     }
   };
-
+  
   return (
     <motion.div
       className="user"
@@ -111,160 +110,247 @@ const User = () => {
         animate={animate}
         transition={{
           duration: 0.5,
-          delay: delay+0.3,
+          delay: delay + 0.3,
         }}
       >
         {is_worker ? (
           <div className="col">
             <motion.div
-            variants={!basics ? {
-              start: {
-                opacity: 0,
-                y: -100,
-              },
-              end: {
-                opacity: 1,
-                y: 0,
-              },
-            }:
-            {
-              start: {
-                opacity: 0,
-                y: -100,
-              },
-              end: {
-                opacity: 1,
-                y: 20,
-              },
-            }
-          }
-            initial="start"
-            animate="end"
-            transition={!basics ?{
-              duration: 0.5,
-              delay: delay+0.2,
-            }:{
-              duration: 0.5,
-              delay: 0.2,
-            }}
-            ><FaRegUserCircle
-            className={
-              basics ? "user-profile-icon active" : "user-profile-icon"
-            }
-            onClick={() => handleProfileMenu("basics")}
-          ></FaRegUserCircle></motion.div>
-             <motion.div
-            variants={{
-              start: {
-                opacity: 0,
-                y: -100,
-              },
-              end: {
-                opacity: 1,
-                y: 0,
-              },
-            }}
-            initial="start"
-            animate={animate}
-            transition={{
-              duration: 0.5,
-              delay: delay+0.6,
-            }}
-            >
-            <BsFillShieldLockFill
-              className={
-                auth ? "user-profile-icon active" : "user-profile-icon"
+              variants={
+                !basics
+                  ? {
+                      start: {
+                        opacity: 0,
+                        y: -100,
+                      },
+                      end: {
+                        opacity: 1,
+                        y: 0,
+                      },
+                    }
+                  : {
+                      start: {
+                        opacity: 0,
+                        y: -100,
+                      },
+                      end: {
+                        opacity: 1,
+                        y: 20,
+                      },
+                    }
               }
-              onClick={() => handleProfileMenu("auth")}
-            ></BsFillShieldLockFill>
+              initial="start"
+              animate="end"
+              transition={
+                !basics
+                  ? {
+                      duration: 0.5,
+                      delay: delay + 0.2,
+                    }
+                  : {
+                      duration: 0.5,
+                      delay: 0.2,
+                    }
+              }
+            >
+              <FaRegUserCircle
+                className={
+                  basics ? "user-profile-icon active" : "user-profile-icon"
+                }
+                onClick={() => handleProfileMenu("basics")}
+              ></FaRegUserCircle>
             </motion.div>
             <motion.div
-            variants={{
-              start: {
-                opacity: 0,
-                y: -100,
-              },
-              end: {
-                opacity: 1,
-                y: 0,
-              },
-            }}
-            initial="start"
-            animate={animate}
-            transition={{
-              duration: 0.5,
-              delay: delay+0.7,
-            }}
-            >
-            <IoMdSchool
-              className={
-                education ? "user-profile-icon active" : "user-profile-icon"
+              variants={
+                !auth
+                  ? {
+                      start: {
+                        opacity: 0,
+                        y: -100,
+                      },
+                      end: {
+                        opacity: 1,
+                        y: 0,
+                      },
+                    }
+                  : {
+                      start: {
+                        opacity: 0,
+                        y: -100,
+                      },
+                      end: {
+                        opacity: 1,
+                        y: 20,
+                      },
+                    }
               }
-              onClick={() => handleProfileMenu("education")}
-            ></IoMdSchool>
+              initial="start"
+              animate="end"
+              transition={
+                !auth
+                  ? {
+                      duration: 0.5,
+                      delay: delay + 0.2,
+                    }
+                  : {
+                      duration: 0.5,
+                      delay: 0.2,
+                    }
+              }
+            >
+              <BsFillShieldLockFill
+                className={
+                  auth ? "user-profile-icon active" : "user-profile-icon"
+                }
+                onClick={() => handleProfileMenu("auth")}
+              ></BsFillShieldLockFill>
             </motion.div>
             <motion.div
-            variants={{
-              start: {
-                opacity: 0,
-                y: -100,
-              },
-              end: {
-                opacity: 1,
-                y: 0,
-              },
-            }}
-            initial="start"
-            animate={animate}
-            transition={{
-              duration: 0.5,
-              delay: delay+0.8,
-            }}
-            >
-            <BsPersonWorkspace
-              className={
-                experience ? "user-profile-icon active" : "user-profile-icon"
+              variants={
+                !education
+                  ? {
+                      start: {
+                        opacity: 0,
+                        y: -100,
+                      },
+                      end: {
+                        opacity: 1,
+                        y: 0,
+                      },
+                    }
+                  : {
+                      start: {
+                        opacity: 0,
+                        y: -100,
+                      },
+                      end: {
+                        opacity: 1,
+                        y: 20,
+                      },
+                    }
               }
-              onClick={() => handleProfileMenu("experience")}
-            ></BsPersonWorkspace>
+              initial="start"
+              animate="end"
+              transition={
+                !education
+                  ? {
+                      duration: 0.5,
+                      delay: delay + 0.2,
+                    }
+                  : {
+                      duration: 0.5,
+                      delay: 0.2,
+                    }
+              }
+            >
+              <IoMdSchool
+                className={
+                  education ? "user-profile-icon active" : "user-profile-icon"
+                }
+                onClick={() => handleProfileMenu("education")}
+              ></IoMdSchool>
             </motion.div>
             <motion.div
-            variants={{
-              start: {
-                opacity: 0,
-                y: -100,
-              },
-              end: {
-                opacity: 1,
-                y: 0,
-              },
-            }}
-            initial="start"
-            animate={animate}
-            transition={{
-              duration: 0.5,
-              delay: delay+1,
-            }}
-            >
-            <IoMdDocument
-              className={
-                resume ? "user-profile-icon active" : "user-profile-icon"
+              variants={
+                !experience
+                  ? {
+                      start: {
+                        opacity: 0,
+                        y: -100,
+                      },
+                      end: {
+                        opacity: 1,
+                        y: 0,
+                      },
+                    }
+                  : {
+                      start: {
+                        opacity: 0,
+                        y: -100,
+                      },
+                      end: {
+                        opacity: 1,
+                        y: 20,
+                      },
+                    }
               }
-              onClick={() => handleProfileMenu("resume")}
-            ></IoMdDocument>
+              initial="start"
+              animate="end"
+              transition={
+                !experience
+                  ? {
+                      duration: 0.5,
+                      delay: delay + 0.2,
+                    }
+                  : {
+                      duration: 0.5,
+                      delay: 0.2,
+                    }
+              }
+            >
+              <BsPersonWorkspace
+                className={
+                  experience ? "user-profile-icon active" : "user-profile-icon"
+                }
+                onClick={() => handleProfileMenu("experience")}
+              ></BsPersonWorkspace>
+            </motion.div>
+            <motion.div
+              variants={
+                !resume
+                  ? {
+                      start: {
+                        opacity: 0,
+                        y: -100,
+                      },
+                      end: {
+                        opacity: 1,
+                        y: 0,
+                      },
+                    }
+                  : {
+                      start: {
+                        opacity: 0,
+                        y: -100,
+                      },
+                      end: {
+                        opacity: 1,
+                        y: 20,
+                      },
+                    }
+              }
+              initial="start"
+              animate="end"
+              transition={
+                !resume
+                  ? {
+                      duration: 0.5,
+                      delay: delay + 0.2,
+                    }
+                  : {
+                      duration: 0.5,
+                      delay: 0.2,
+                    }
+              }
+            >
+              <IoMdDocument
+                className={
+                  resume ? "user-profile-icon active" : "user-profile-icon"
+                }
+                onClick={() => handleProfileMenu("resume")}
+              ></IoMdDocument>
             </motion.div>
           </div>
         ) : (
           <></>
         )}
       </motion.div>
-     
-        {basics && <Basics delay={propsDelay}/>}
-        {auth && <Auth/>}
-        {education&& <Education />}
-        {experience&& <Experience />}
-        {resume&& <Resume  />}
-     
+
+      {basics && <Basics delay={propsDelay}/>}
+      {auth && <Auth delay={propsDelay}  />}
+      {education && <Education  delay={propsDelay}/>}
+      {experience && <Experience delay={propsDelay}/>}
+      {resume && <Resume delay={propsDelay}/>}
     </motion.div>
   );
 };

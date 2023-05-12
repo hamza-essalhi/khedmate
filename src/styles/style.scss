@@ -1123,8 +1123,10 @@ body {
     }
     &.user-row-props {
       .col {
+        @include flex($col: true, $v-center: true, $h-center: true);
         form {
           @include flex($col: true, $v-center: true, $h-center: true);
+          width: 100%;
           .image-box {
             @include flex($col: false, $v-center: true, $h-center: true);
             margin: 1em 0;
@@ -1201,6 +1203,73 @@ body {
               :focus {
                 border-color: red;
                 outline: none;
+              }
+            }
+            .input-group {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              border: 2px $btn-bg solid;
+              border-radius: 10px;
+              margin: 0.5em;
+              padding: 0;
+              outline: none;
+              transition: 0.3s;
+              &:hover,
+              &:active,
+              :focus {
+                border-color: $info;
+                outline: none;
+                label {
+                  color: $success;
+                }
+              }
+              input {
+                width: 90%;
+                border: none;
+                margin: 0;
+              }
+              .password-icon {
+                margin: 0 0.3em;
+                font-size: 22px;
+                color: $btn-bg;
+                font-weight: bold;
+              }
+            }
+            .error {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              border: 2px red solid;
+              border-radius: 10px;
+              margin: 0.5em;
+              padding: 0;
+              outline: none;
+              box-shadow: rgb(223 0 0 / 15%) 0px 0px 20px 0px,
+                rgb(223 0 0 / 15%) 1px 1px 20px 0px;
+              transition: 0.3s;
+              &:hover,
+              &:active,
+              :focus {
+                border-color: red;
+                outline: none;
+                label {
+                  color: $success;
+                }
+              }
+              input {
+                width: 90%;
+                border: none;
+                margin: 0;
+                color: red;
+              }
+              .password-icon {
+                margin: 0 0.3em;
+                font-size: 22px;
+                color: $btn-bg;
+                font-weight: bold;
               }
             }
           }
