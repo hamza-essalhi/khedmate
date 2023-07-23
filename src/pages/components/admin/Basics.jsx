@@ -2,7 +2,9 @@ import { motion } from "framer-motion";
 import { MdEdit } from "react-icons/md";
 import userImage from "../../../images/user.jpg";
 import { useEffect, useState } from "react";
-const Basics = ({ delay}) => {
+import { useSelector } from "react-redux";
+const Basics = ({ delay,user}) => {
+  const {userDecoded}=useSelector((state)=>state.auth)
   const [phoneMatch, setPhoneMatch] = useState(true);
   const newDelay = delay;
   const [phone, setPhone] = useState("");
@@ -66,7 +68,7 @@ const Basics = ({ delay}) => {
     setUploadForm(!uploadForm);
   };
  
-
+console.log(userDecoded)
 
   return (
     <motion.div
@@ -106,7 +108,7 @@ const Basics = ({ delay}) => {
               }}
             >
               <label htmlFor="">Upload Profile Image</label>
-              <input type="file" name="profile_img" placeholder="John..." />
+              <input type="file" name="profile_img"  placeholder="John..." />
             </motion.div>
           )}
           <motion.div
@@ -120,16 +122,16 @@ const Basics = ({ delay}) => {
             }}
           >
             <label htmlFor="">First Name</label>
-            <input type="text" name="first_name" placeholder="John..." onChange={handleChange} />
+            <input type="text" name="first_name" defaultValue={user?.first_name}  placeholder="John..." onChange={handleChange} />
             <label htmlFor="">Last Name</label>
-            <input type="text" name="last_name" placeholder="edwrd..." onChange={handleChange} />
+            <input type="text" name="last_name" defaultValue={user?.last_name} placeholder="edwrd..." onChange={handleChange} />
             <label htmlFor="">Phone</label>
 
             <input
               type="tel"
               name="phone"
               className={phoneMatch ? "input-error" : ""}
-              
+              defaultValue={user?.phone}
               onChange={handleChange}
               placeholder="066666.."
             />
@@ -140,6 +142,7 @@ const Basics = ({ delay}) => {
               cols="30"
               rows="10"
               placeholder="106, rue Taha Houcine -ex Galilee, Grand Casablanca"
+              defaultValue={user?.address}
               onChange={handleChange}
             ></textarea>
             <div className="btn">

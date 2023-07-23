@@ -1,4 +1,4 @@
-import { createBrowserRouter, createRoutesFromElements,Route,RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements,Route,RouterProvider} from "react-router-dom";
 import Rout from "./Rout";
 
 //pages
@@ -11,7 +11,10 @@ import Login from "./pages/home/Login";
 import SignUp from "./pages/home/SignUp";
 import User from "./pages/admin/User";
 
+import PrivetRoute from "./pages/components/PrivetRoute";
+import AuthRoute from "./pages/components/AuthRoute";
 function App() {
+  
   const router=createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Rout />}>
@@ -20,12 +23,15 @@ function App() {
         <Route path="/job/:id" element={<JobPost />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs/>} />
+
+        <Route path="" element={<AuthRoute/>} >
         <Route path="/login" element={<Login/>} />
         <Route path="/sign-up" element={<SignUp/>} />
-
-        {/* user */}
+        </Route>
+        
+        <Route path="" element={<PrivetRoute/>} >
         <Route path="/user/:id" element={<User/>} />
-
+        </Route>
         {/* error */}
         <Route path="/error" element={<Error />} />
       </Route>

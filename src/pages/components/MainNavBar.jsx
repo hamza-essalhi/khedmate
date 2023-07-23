@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //images
 import bannerImage from "../../images/banner.png";
@@ -18,15 +18,19 @@ import { FaUserAlt } from "react-icons/fa";
 //utls
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout,reset } from "../../toolkit/auth/authSlice";
 
 
 const MainNavBar = () => {
-  const is_authenticated=true
   const [menuOpen, setMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const ref = useRef(null);
   const target = useInView(ref, { once: true });
   const animate = useAnimation();
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+  const {user,userDecoded}=useSelector((state)=>state.auth)
   const transition = {
     duration: 0.5,
     delay: 0.1,
@@ -47,8 +51,12 @@ const MainNavBar = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
- 
-  
+  const logoutFunc=()=>{
+    dispatch(logout())
+    dispatch(reset())
+    navigate('/login')
+  }
+
   document.addEventListener('click', (event) => {
     const userButton = document.querySelector('#user-button');
     const navButton = document.querySelector('#nav-button')
@@ -98,8 +106,8 @@ const MainNavBar = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          {is_authenticated && (<li>
-            <Link to='/user'>Profile</Link>
+          {user && (<li>
+            <Link to={`/user/${userDecoded.user_str_id}`}>Profile</Link>
           </li>)}
           <li>
             <Link to='about-us'>About Us</Link>
@@ -121,15 +129,22 @@ const MainNavBar = () => {
               <IoMdNotifications></IoMdNotifications>
             </Link>
           </li>
-          <li className="user-side">
+          {user ?<li className="user-side">
             <img src={userImage} onClick={userMenuHandler} alt="" id="user-button" />
           </li>
+          :
+          <li className="user-side" onClick={userMenuHandler}>
+            <Link to="/">
+            <FaUserAlt   id="user-button"></FaUserAlt>
+            </Link>
+          
+          </li>}
         </ul>
       </div>
       {
-        is_authenticated ? (
+        user? (
           <div className={userMenuOpen ? "user-menu-active" : "user-menu"} >
-        <Link to="/">
+        <Link to={`/user/${userDecoded?.user_str_id}`}>
           <FaUserAlt className="user-menu-icon"></FaUserAlt>
           Profile
         </Link>
@@ -137,7 +152,7 @@ const MainNavBar = () => {
           <IoMdSettings className="user-menu-icon"></IoMdSettings>
           Settings
         </Link>
-        <Link to="/">
+        <Link to="/" onClick={logoutFunc}>
           <IoMdLogOut className="user-menu-icon" ></IoMdLogOut>
           Logout
         </Link>

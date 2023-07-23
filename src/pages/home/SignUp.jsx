@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { motion, useAnimation, useInView } from "framer-motion";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import Select from "../components/Select";
 
 const SignUp = () => {
   document.title = "Sign Up";
@@ -15,7 +16,15 @@ const SignUp = () => {
   const [password2, setPassword2] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  
+  const [formData, setFormData] = useState({
+    first_name:'',
+    last_name:'',
+    worker:'',
+    phone:'',
+    email: "",
+    password: "",
+    rpassword:''
+  });
   const target = useInView(ref, { once: true });
   const animate = useAnimation();
   const transition = {
@@ -27,6 +36,18 @@ const SignUp = () => {
       animate.start("end");
     }
   }, [target, animate]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+    setPassword1(formData.password)
+    setPassword2(formData.password2)
+    setEmail(formData.email)
+    setPhone(formData.phone)
+  };
   const handlePassword = (e) => {
     const input =document.querySelector('#password-input')
     setShowPassword(!showPassword);
@@ -36,6 +57,22 @@ const SignUp = () => {
     const input =document.querySelector('#rpassword-input')
     setShowRpassword(!showRpassword);
    input.type=!showRpassword ? 'text' : 'password';
+  };
+  const handleSelectChangeWorker = (value) => {
+    if (value === 'true'){
+      value=true
+    }
+    else{
+      value=false
+    }
+    setFormData({
+      ...formData,
+      worker: value
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData)
   };
 
   useEffect(() => {
@@ -93,8 +130,12 @@ const SignUp = () => {
     } else {
       setEmailMatch(true)
     }
+    setPassword1(formData.password)
+    setPassword2(formData.rpassword)
+    setEmail(formData.email)
+    setPhone(formData.phone)
 
-  }, [password1, password2,phone,email]);
+  }, [password1, password2,phone,email,formData.password,formData.rpassword,formData.email,formData.phone]);
   
   return (
     <motion.div
@@ -235,16 +276,16 @@ const SignUp = () => {
             }}
           >
             <label htmlFor="">First Name</label>
-            <input type="text" name="first_name" placeholder="first name..."/>
+            <input type="text" name="first_name" placeholder="first name..." onChange={handleChange} />
             <label htmlFor="">Last Name</label>
-            <input type="text" name="last_name" placeholder="last name..." />
+            <input type="text" name="last_name" placeholder="last name..." onChange={handleChange}  />
             <label htmlFor="">Email</label>
-            <input type="email" name="email" className={emailMatch ? 'input-error' : ''} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="name@domain.com"/>
+            <input type="email" name="email" className={emailMatch ? 'input-error' : ''}  placeholder="name@domain.com" onChange={handleChange}/>
             <label htmlFor="">Phone</label>
-            <input type="tel" name="phone" className={phoneMatch ? 'input-error' : ''} value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="066666" />
+            <input type="tel" name="phone" className={phoneMatch ? 'input-error' : ''}  placeholder="0666666666" onChange={handleChange} />
             <label htmlFor="">Password</label>
             <div className={!passwordsMatch ? 'error' : 'input-group'} >
-              <input type="password" name="password" id="password-input" value={password1} onChange={(e) => setPassword1(e.target.value)} placeholder="Password"/>
+              <input type="password" name="password" id="password-input"  placeholder="Password" onChange={handleChange}/>
               {showPassword ? (
                 <AiOutlineEyeInvisible
                   className="password-icon"
@@ -259,7 +300,7 @@ const SignUp = () => {
             </div>
             <label htmlFor="">Reapeat Password</label>
             <div className={!passwordsMatch ? 'error' : 'input-group'}>
-              <input type="password" name="rpassword" id="rpassword-input" value={password2} onChange={(e) => setPassword2(e.target.value)} placeholder="Repeat Password"/>
+              <input type="password" name="rpassword" id="rpassword-input"  placeholder="Repeat Password"/>
               {showRpassword ? (
                 <AiOutlineEyeInvisible
                   className="password-icon"
@@ -272,9 +313,21 @@ const SignUp = () => {
                 ></AiOutlineEye>
               )}
             </div>
+            <label htmlFor="">Worker ?</label>
+            <Select
+            
+                options={
+                  [
+                    {"label": "True" , "value": "true"},
+                    {"label": "False" , "value": "false"}
+                  ]
+                }
+                defaultValue="Select"
+                onChange={handleSelectChangeWorker}
+              />
 
             <div className="btn">
-              <button>Sign Up</button>
+              <button onClick={handleSubmit}>Sign Up</button>
             </div>
             
             <a href="login">

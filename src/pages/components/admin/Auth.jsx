@@ -3,7 +3,7 @@ import { motion} from "framer-motion";
 
 import { useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-const Auth = ({ delay}) => {
+const Auth = ({ delay,user}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showRpassword, setShowRpassword] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(true);
@@ -162,10 +162,10 @@ const Auth = ({ delay}) => {
             }}
           >
             <label htmlFor="">Email</label>
-            <input type="email" name="email" className={emailMatch ? 'input-error' : ''} onChange={handleChange} placeholder="name@domain.com"/>
+            <input type="email" name="email" className={emailMatch ? 'input-error' : ''} defaultValue={user?.email} onChange={handleChange} placeholder="name@domain.com"/>
             
             <label htmlFor="">Old Password</label>
-            <input type="password" name="old_password" placeholder="edwrd..." onChange={handleChange} />
+            <input type="password" name="old_password" placeholder="Old Password" onChange={handleChange} />
 
             <label htmlFor="">Password</label>
             <div className={!passwordsMatch ? 'error' : 'input-group'} >

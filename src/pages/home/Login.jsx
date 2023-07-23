@@ -3,9 +3,21 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
+import { useNavigate } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import { loginThunk,reset } from "../../toolkit/auth/authSlice";
+import loadingImg from '../../images/Spin-0.5s-200px.gif'
+import doneImg from '../../images/system-solid-31-check.gif'
+
 const Login = () => {
   document.title = "Login";
+  const {user}=useSelector((state)=>state.auth)
   const ref = useRef(null);
+  const navigate=useNavigate()
+  const dispatch=useDispatch()
+  const {error,loading,successed}=useSelector((state)=>state.auth)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const target = useInView(ref, { once: true });
   const animate = useAnimation();
@@ -13,6 +25,8 @@ const Login = () => {
     duration: 0.5,
     delay: 0.1,
   };
+
+  
   useEffect(() => {
     if (target) {
       animate.start("end");
@@ -22,6 +36,19 @@ const Login = () => {
     const input =document.querySelector('#password-input')
     setShowPassword(!showPassword);
    input.type=!showPassword ? 'text' : 'password';
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email: email,
+      password: password,
+    };
+
+    dispatch(loginThunk(data))
+    dispatch(reset())
+    if(user){
+      navigate('/')
+    }
   };
   return (
     <motion.div
@@ -160,12 +187,13 @@ const Login = () => {
               duration: 0.5,
               delay: 1,
             }}
+            onSubmit={handleSubmit}
           >
             <label htmlFor="">Email</label>
-            <input type="email" name="email" placeholder="name@domain.com"/>
+            <input type="email" name="email" placeholder="name@domain.com" onChange={(e) => setEmail(e.target.value)}/>
             <label htmlFor="">Password</label>
             <div className="input-group">
-              <input type="password" name="password" id="password-input" placeholder="Password..."/>
+              <input type="password" name="password" id="password-input" placeholder="Password..." onChange={(e) => setPassword(e.target.value)}/>
               {showPassword ? (
                 <AiOutlineEyeInvisible
                   className="password-icon"
@@ -178,10 +206,41 @@ const Login = () => {
                 ></AiOutlineEye>
               )}
             </div>
-
+            <div className={error? 'active':'errorState'}>
+              <motion.h3
+              variants={{
+                start: {
+                  x: -100,
+                },
+                end: {
+                  x: 0,
+                },
+              }}
+              initial="start"
+              animate={animate}
+              transition={{
+                duration: 0.5,
+                delay: 0.1,
+              }}
+          >
+            Invalid email or password
+          </motion.h3>
+            </div>
             <div className="btn">
               <button>Login</button>
             </div>
+            {loading &&(
+              <div className="loading">
+              <img src={loadingImg} alt="" />
+            </div>
+            )}
+            {successed &&(
+              <div className="loading">
+              <img src={doneImg} alt="" />
+            </div>
+            )}
+            
+            
             <a href="/">Rest you Password</a>
             <a href="sign-up">
               You don't have account? <span>Sign Up</span>

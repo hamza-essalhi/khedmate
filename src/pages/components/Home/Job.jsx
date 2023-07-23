@@ -3,10 +3,12 @@ import userImage from "../../../images/user.jpg";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { motion, useAnimation, useInView } from "framer-motion";
+import axios from "axios";
 
 const Job = (props) => {
-  const user = props.user;
+  const job = props.job;
   const [like, setLike] = useState(false);
+  const [user,setUser]=useState([])
   const ref = useRef(null);
   const target = useInView(ref, { once: true });
   const animate = useAnimation();
@@ -14,6 +16,19 @@ const Job = (props) => {
     duration: 0.5,
     delay: 0.1,
   };
+
+  useEffect(() => {
+
+    axios
+      .get(`http://localhost:8000/api/user/${job.user}`)
+      .then((response) => {
+        const userData = response.data;
+        setUser(userData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [job.user]);
   useEffect(() => {
     if (target) {
       animate.start("end");
@@ -22,21 +37,21 @@ const Job = (props) => {
   useEffect(() => {
     try {
       const likedJobs = JSON.parse(localStorage.getItem("likedJobs")) || [];
-      const liked = likedJobs.filter((job) => job.id === parseInt(user.job.id));
+      const liked = likedJobs.filter((job) => job.id === parseInt(job.id));
       setLike(liked[0].liked);
     } catch {
       setLike(false);
     }
-  }, [user.job?.id]);
+  }, [job?.id]);
   const handleLike = () => {
     setLike(!like);
     const likedJobs = JSON.parse(localStorage.getItem("likedJobs")) || [];
-    const index = likedJobs.findIndex((j) => j.id === user.job?.id);
+    const index = likedJobs.findIndex((j) => j.id === job?.id);
 
     if (index !== -1) {
       likedJobs[index].liked = !likedJobs[index].liked;
     } else {
-      likedJobs.push({ id: user.job?.id, liked: like });
+      likedJobs.push({ id: job?.id, liked: like });
     }
 
     localStorage.setItem("likedJobs", JSON.stringify(likedJobs));
@@ -84,11 +99,11 @@ const Job = (props) => {
         >
           <img src={userImage} alt="" />
           <div className="sub-col">
-            <h3>{user.job?.jobe_title}</h3>
+            <h3>{job?.jobe_title}</h3>
             <span>
-              Bost {user.first_name} {user.last_name}
+              Post by {user.first_name} {user.last_name}
             </span>
-            <span>{user.job?.city}</span>
+            <span>{job?.city}</span>
           </div>
         </motion.div>
         <motion.div
@@ -110,7 +125,7 @@ const Job = (props) => {
             delay: 0.6,
           }}
         >
-          <span>{user.job?.date}</span>
+          <span>{job?.date}</span>
         </motion.div>
         <motion.div
           className="col like"
@@ -163,9 +178,9 @@ const Job = (props) => {
           delay: 0.9,
         }}
       >
-        <span>{user.job?.job_description.slice(0, 200)}...</span>
+        <span>{job?.job_description.slice(0, 200)}...</span>
 
-        <Link to={"job/" + user.job?.id}>Apply Now</Link>
+        <Link to={"job/" + job?.id}>Apply Now</Link>
       </motion.div>
 
       <motion.div
@@ -189,7 +204,7 @@ const Job = (props) => {
       >
         <h3>Keywords</h3>
         <div className="keywords-row">
-          {user.job?.key_words.map((keyword, index) => (
+          {job?.key_words.map((keyword, index) => (
             <span key={index}>{keyword}</span>
           ))}
         </div>

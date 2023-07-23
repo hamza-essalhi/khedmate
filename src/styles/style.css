@@ -89,6 +89,7 @@ body::-webkit-scrollbar-thumb {
   position: relative;
   width: 200px;
   border-radius: 10px;
+  z-index: 4;
 }
 .custom-select .select-input {
   display: flex;
@@ -2170,6 +2171,13 @@ body {
   width: 60%;
   margin: 3em;
 }
+.about-us .col form .custom-select,
+.contact-us .col form .custom-select,
+.auth .col form .custom-select {
+  width: 100% !important;
+  z-index: 4;
+  margin: 0.5em;
+}
 .about-us .col form label,
 .about-us .col form input,
 .about-us .col form textarea,
@@ -2405,6 +2413,9 @@ body {
   color: #fc6e5e;
   font-weight: bold;
 }
+.auth .right form div.error {
+  display: none;
+}
 .auth .right form .input-error {
   width: 100%;
   display: flex;
@@ -2423,6 +2434,49 @@ body {
 .auth .right form .input-error :focus {
   border-color: red;
   outline: none;
+}
+.auth .right form div.active {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px red solid;
+  border-radius: 10px;
+  margin: 0.5em;
+  padding: 1.1em;
+  outline: none;
+  box-shadow: rgba(223, 0, 0, 0.15) 0px 0px 20px 0px, rgba(223, 0, 0, 0.15) 1px 1px 20px 0px;
+  transition: 0.3s;
+}
+.auth .right form div.active:hover, .auth .right form div.active:active,
+.auth .right form div.active :focus {
+  border-color: red;
+  outline: none;
+}
+.auth .right form div.active:hover label, .auth .right form div.active:active label,
+.auth .right form div.active :focus label {
+  color: #00ff85;
+}
+.auth .right form div.active input {
+  width: 90%;
+  border: none;
+  margin: 0;
+  color: red;
+}
+.auth .right form div.active .password-icon {
+  margin: 0 0.3em;
+  font-size: 22px;
+  color: #fc6e5e;
+  font-weight: bold;
+}
+.auth .right form div.active h3 {
+  color: #f74835;
+  text-align: center;
+}
+.auth .right form .loading, .auth .right form .done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .auth .right form .btn {
   margin: 2em;
@@ -2475,6 +2529,11 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+.user .row.user-row-props .col form .custom-select {
+  width: 100% !important;
+  z-index: 4;
+  margin: 0.5em;
 }
 .user .row.user-row-props .col form .image-box {
   display: flex;

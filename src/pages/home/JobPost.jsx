@@ -9,8 +9,8 @@ const JobPost = () => {
   const { id } = useParams();
   const [user, setUser] = useState([]);
   const [job, setJob] = useState([]);
-  const [jobPost, setJobPost] = useState([]);
   const [like, setLike] = useState(false);
+  const [formattedDate, setFormattedDate] = useState('');
   const ref = useRef(null);
   const target = useInView(ref, { once: true });
   const animate = useAnimation();
@@ -26,38 +26,27 @@ const JobPost = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/job-post.json")
+      .get(`http://localhost:8000/api/job/${id}`)
       .then((response) => {
         const jobPosts = response.data;
-        const filteredJobPost = jobPosts.filter(
-          (jobPost) => jobPost.id === parseInt(id)
-        );
-        setJobPost(filteredJobPost[0]);
+        setJob(jobPosts);
       })
       .catch((error) => {
         console.log(error);
       });
+      
     axios
-      .get("http://localhost:3000/users.json")
+      .get(`http://localhost:8000/api/user/${job.user}`)
       .then((response) => {
         const users = response.data;
-        const filteredUser = users.filter((user) => user.id === parseInt(id));
-        setUser(filteredUser[0]);
+       
+        setUser(users);
       })
       .catch((error) => {
         console.log(error);
       });
-    axios
-      .get("http://localhost:3000/jobs1.json")
-      .then((response) => {
-        const jobs = response.data;
-        const filteredJob = jobs.filter((job) => job.id === parseInt(id));
-        setJob(filteredJob[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [id]);
+    
+  }, [job.id,job.user,id]);
   useEffect(() => {
     try {
       const likedJobs = JSON.parse(localStorage.getItem("likedJobs")) || [];
@@ -80,6 +69,14 @@ const JobPost = () => {
 
     localStorage.setItem("likedJobs", JSON.stringify(likedJobs));
   };
+
+  useEffect(() => {
+    const timestampStr = job.created_date;
+
+    const timestamp = new Date(timestampStr);
+    const formattedDate = `${timestamp.getFullYear()}-${String(timestamp.getMonth() + 1).padStart(2, '0')}-${String(timestamp.getDate()).padStart(2, '0')} ${String(timestamp.getHours()).padStart(2, '0')}:${String(timestamp.getMinutes()).padStart(2, '0')}:${String(timestamp.getSeconds()).padStart(2, '0')}`;
+    setFormattedDate(formattedDate);
+  }, [job.created_date]);
   document.title = job.jobe_title;
   return (
     <motion.div
@@ -148,7 +145,7 @@ const JobPost = () => {
               Post By: {user.first_name} {user.last_name}
             </span>
             <span>City: {job.city}</span>
-            <span>Published on: {job.date}</span>
+            <span>Published on: {formattedDate}</span>
           </div>
         </motion.div>
         <motion.div
@@ -204,19 +201,18 @@ const JobPost = () => {
       >
         <span>{job.job_description}</span>
         <div className="sub-row">
-          <span>Domain: {jobPost.domain?.slice(0, 10)}</span>
-          <span>Experience: {parseInt(jobPost.experience)} Years</span>
-          <span>Fonction: {job.domain}</span>
+          <span>Domain: {job.domain}</span>
+          <span>Years of experience: {job.years_of_experience}</span>
+          <span>Mounths of experience: {job.mounths_of_experience}</span>
         </div>
         <div className="sub-row">
-          <span>Contract: CDI</span>
-          <span>Type: {jobPost.type}</span>
-          <span>Company: {jobPost.company}</span>
+        <span>Job type: {job.job_type}</span>
+          <span>Company: {job.company}</span>
+          <span>Education level: {job.education}</span>
         </div>
         <div className="sub-row">
-          <span>Salaire: {jobPost.salaire} DH</span>
-          <span>Formation: {jobPost.formation} mounths</span>
-          <span>Education level: {jobPost.education}</span>
+          <span>Salaire: {job.salaire} DH</span>
+          
         </div>
         <Link>Apply Now</Link>
       </motion.div>

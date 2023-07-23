@@ -16,13 +16,12 @@ import { motion, useAnimation, useInView } from "framer-motion";
 
 const Home = () => {
   document.title = 'Home';
-  const [users, setUsers] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(10);
+  const [jobsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchLenght, setSearchLenght] = useState(0);
-  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [filteredJobs, setFilteredJobs] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedCities, setSelectedCities] = useState("");
   const [selectedDomains, setSelectedDomains] = useState("");
@@ -93,17 +92,9 @@ const Home = () => {
 
   // fetch data
   useEffect(() => {
+
     axios
-      .get("./users.json")
-      .then((response) => {
-        const firstTenUsers = response.data.slice(0, 200);
-        setUsers(firstTenUsers);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    axios
-      .get("./jobs1.json")
+      .get("http://localhost:8000/api/jobs/")
       .then((response) => {
         const fiterJobs = response.data.slice(0, 200);
         setJobs(fiterJobs);
@@ -115,16 +106,13 @@ const Home = () => {
 
   // merge jobs and users,when we use api we need relationship in db cascade users and jobs
 
-  const mergedData = users.map((user) => {
-    const job = jobs.find((j) => j.id === user.id);
-    return { ...user, job };
-  });
+  const mergedData = jobs
 
   // Pagination load 10 rows in one page stile needs some fixing
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = mergedData.slice(indexOfFirstUser, indexOfLastUser);
-  const totalPages = Math.ceil(users.length / usersPerPage);
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = mergedData.slice(indexOfFirstJob, indexOfLastJob);
+  const totalPages = Math.ceil(jobs.length / jobsPerPage);
 
   // change page and data
   const handleClick = (pageNumber) => {
@@ -137,16 +125,16 @@ const Home = () => {
   const handleSearchQueryChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
-    let filteredUsers = mergedData.filter(
-      (user) =>
-        user.job.jobe_title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.job.job_description
+    let filteredJobs = mergedData.filter(
+      (job) =>
+        job.jobe_title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.job_description
           .toLowerCase()
           .includes(searchQuery.toLowerCase())
     );
     if (selectedOption === "New") {
-      filteredUsers = filteredUsers.filter((user) => {
-        const jobDate = user.job.date;
+      filteredJobs = filteredJobs.filter((job) => {
+        const jobDate = job.created_date;
         const [jobMonth, jobDay, jobYear] = jobDate
           .split("/")
           .map((str) => parseInt(str));
@@ -160,25 +148,25 @@ const Home = () => {
         return newDay === jobDateObject;
       });
     } else if (selectedOption === "Old") {
-      filteredUsers = filteredUsers.filter((user) => {
-        const jobDate = user.job.date.split("/");
+      filteredJobs = filteredJobs.filter((job) => {
+        const jobDate = job.created_date.split("/");
         const today = new Date();
         const newDate = new Date(jobDate[2], jobDate[0] - 1, jobDate[1]);
         return newDate < today;
       });
     }
-    setFilteredUsers(filteredUsers);
+    setFilteredJobs(filteredJobs);
   };
 
-  // if search query not empty push filteredUsers else push currentUsers
+  // if search query not empty push filteredJobs else push currentJobs
 
-  const displayUsers = searchQuery ? filteredUsers : currentUsers;
+  const displayJobs = searchQuery ? filteredJobs : currentJobs;
 
   // handling the job search lenght
 
   useEffect(() => {
-    setSearchLenght(displayUsers.length);
-  }, [displayUsers.length]);
+    setSearchLenght(displayJobs.length);
+  }, [displayJobs.length]);
   return (
     <div className="home container">
       <div className="scroll-bottom">
@@ -297,8 +285,8 @@ const Home = () => {
             )}
           </div>
         </div>
-        {displayUsers.map((user) => {
-          return <Job key={user.id} user={user} />;
+        {displayJobs.map((job) => {
+          return <Job key={job.id} job={job} />;
         })}
         {searchQuery === "" ? (
           <div className="row pagination">

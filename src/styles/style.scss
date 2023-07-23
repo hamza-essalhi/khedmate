@@ -928,6 +928,12 @@ body {
       flex-direction: column;
       width: 60%;
       margin: 3em;
+      .custom-select{
+        width: 100% !important;
+        z-index: 4;
+        margin: 0.5em;
+        
+      }
       label,
       input,
       textarea,
@@ -1058,6 +1064,9 @@ body {
           font-weight: bold;
         }
       }
+      div.error{
+        display: none;
+      }
       .input-error {
         width: 100%;
         display: flex;
@@ -1079,6 +1088,54 @@ body {
           outline: none;
         }
       }
+      div{
+        &.active{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px red solid;
+          border-radius: 10px;
+          margin: 0.5em;
+          padding: 1.1em;
+          outline: none;
+          box-shadow: rgb(223 0 0 / 15%) 0px 0px 20px 0px,
+            rgb(223 0 0 / 15%) 1px 1px 20px 0px;
+          transition: 0.3s;
+          &:hover,
+          &:active,
+          :focus {
+            border-color: red;
+            outline: none;
+            label {
+              color: $success;
+            }
+          }
+          input {
+            width: 90%;
+            border: none;
+            margin: 0;
+            color: red;
+          }
+          .password-icon {
+            margin: 0 0.3em;
+            font-size: 22px;
+            color: $btn-bg;
+            font-weight: bold;
+          }
+        
+          h3{
+            color: $error;
+            text-align: center;
+          }
+        }
+      }
+      .loading,.done{
+        display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      
 
       .btn {
         margin: 2em;
@@ -1122,11 +1179,18 @@ body {
       }
     }
     &.user-row-props {
+      
       .col {
         @include flex($col: true, $v-center: true, $h-center: true);
         form {
           @include flex($col: true, $v-center: true, $h-center: true);
           width: 100%;
+          .custom-select{
+            width: 100% !important;
+            z-index: 4;
+            margin: 0.5em;
+            
+          }
           .image-box {
             @include flex($col: false, $v-center: true, $h-center: true);
             margin: 1em 0;
@@ -1148,6 +1212,7 @@ body {
           .form-content{
             width: 60% !important;
             margin: 2em 0;
+            
             label,
             input,
             textarea,
@@ -1205,6 +1270,7 @@ body {
                 outline: none;
               }
             }
+            
             .input-group {
               width: 100%;
               display: flex;
