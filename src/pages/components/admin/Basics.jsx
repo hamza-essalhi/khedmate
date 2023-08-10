@@ -2,9 +2,10 @@ import { motion } from "framer-motion";
 import { MdEdit } from "react-icons/md";
 import userImage from "../../../images/user.jpg";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-const Basics = ({ delay,user}) => {
-  const {userDecoded}=useSelector((state)=>state.auth)
+import axios from "axios";
+
+const Basics = ({ delay,userData}) => {
+  const {user}=true
   const [phoneMatch, setPhoneMatch] = useState(true);
   const newDelay = delay;
   const [phone, setPhone] = useState("");
@@ -51,6 +52,18 @@ const Basics = ({ delay,user}) => {
       scale: 1,
     },
   };
+  useEffect(() => {
+    // If user data is available, update the form data state
+    if (userData ) {
+      setFormData({
+        first_name: userData.first_name || "",
+        last_name: userData.last_name || "",
+        phone: userData.phone || "",
+        address: userData.address || "",
+        profile_img: userData.profile_img || "",
+      });
+    }
+  }, [userData]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -60,15 +73,32 @@ const Basics = ({ delay,user}) => {
     setPhone(formData.phone)
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData)
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.access}`, // Assuming "user.access" is the JWT access token
+      }
+    };
+    axios
+      .put("http://localhost:8000/api/user",config,formData)
+      .then((response) => {
+        const userResponse = response.data;
+        console.log(userResponse)
+
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const handelUploadFrom = () => {
     setUploadForm(!uploadForm);
   };
  
-console.log(userDecoded)
+console.log(user)
 
   return (
     <motion.div
@@ -122,16 +152,16 @@ console.log(userDecoded)
             }}
           >
             <label htmlFor="">First Name</label>
-            <input type="text" name="first_name" defaultValue={user?.first_name}  placeholder="John..." onChange={handleChange} />
+            <input type="text" name="first_name" defaultValue={userData?.first_name}    onChange={handleChange} />
             <label htmlFor="">Last Name</label>
-            <input type="text" name="last_name" defaultValue={user?.last_name} placeholder="edwrd..." onChange={handleChange} />
+            <input type="text" name="last_name" defaultValue={userData?.last_name} placeholder="edwrd..." onChange={handleChange} />
             <label htmlFor="">Phone</label>
 
             <input
               type="tel"
               name="phone"
               className={phoneMatch ? "input-error" : ""}
-              defaultValue={user?.phone}
+              defaultValue={userData?.phone}
               onChange={handleChange}
               placeholder="066666.."
             />
@@ -142,7 +172,7 @@ console.log(userDecoded)
               cols="30"
               rows="10"
               placeholder="106, rue Taha Houcine -ex Galilee, Grand Casablanca"
-              defaultValue={user?.address}
+              defaultValue={userData?.address}
               onChange={handleChange}
             ></textarea>
             <div className="btn">

@@ -4,20 +4,17 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
-import { loginThunk,reset } from "../../toolkit/auth/authSlice";
 import loadingImg from '../../images/Spin-0.5s-200px.gif'
 import doneImg from '../../images/system-solid-31-check.gif'
 
 const Login = () => {
   document.title = "Login";
-  const {user}=useSelector((state)=>state.auth)
+  const user=true
   const ref = useRef(null);
   const navigate=useNavigate()
-  const dispatch=useDispatch()
-  const {error,loading,successed}=useSelector((state)=>state.auth)
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {error,loading,successed}=true
+  const [setEmail] = useState("");
+  const [setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const target = useInView(ref, { once: true });
   const animate = useAnimation();
@@ -39,13 +36,12 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
-      email: email,
-      password: password,
-    };
-
-    dispatch(loginThunk(data))
-    dispatch(reset())
+    // const data = {
+    //   email: email,
+    //   password: password,
+    // };
+    
+    
     if(user){
       navigate('/')
     }

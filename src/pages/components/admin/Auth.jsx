@@ -58,7 +58,8 @@ const Auth = ({ delay,user}) => {
     ];
 
     const forbiddenDomain = forbiddenDomains.find((domain) => email.endsWith("@" + domain))
-    if (forbiddenDomain) {
+    
+    if (forbiddenDomain ) {
       setEmailMatch(false)
     } else {
       setEmailMatch(true)

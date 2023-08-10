@@ -2,17 +2,17 @@ import { Outlet } from "react-router-dom";
 import MainNavBar from "./pages/components/MainNavBar";
 import Footer from "./pages/components/Footer";
 
-const Rout = () => {
+const CustomRoute = ({showNavAndFooter}) => {
   return (
     <>
       {/* navbar */}
-      <MainNavBar />
+      {showNavAndFooter && <MainNavBar />}
+      
       {/* content */}
       <Outlet />
-
-      <Footer/>
+      {showNavAndFooter &&<Footer/>}
     </>
   );
 };
 
-export default Rout;
+export default CustomRoute;

@@ -1,5 +1,10 @@
-import { createBrowserRouter, createRoutesFromElements,Route,RouterProvider} from "react-router-dom";
-import Rout from "./Rout";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import CustomRoute from "./Route";
 
 //pages
 import Home from "./pages/home/Home";
@@ -13,38 +18,41 @@ import User from "./pages/admin/User";
 
 import PrivetRoute from "./pages/components/PrivetRoute";
 import AuthRoute from "./pages/components/AuthRoute";
-function App() {
-  
-  const router=createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<Rout />}>
-        {/* home */}
-        <Route index element={<Home />} />
-        <Route path="/job/:id" element={<JobPost />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/contact-us" element={<ContactUs/>} />
+import Chat from "./pages/admin/Chat";
+import Application from "./pages/admin/Application";
 
-        <Route path="" element={<AuthRoute/>} >
-        <Route path="/login" element={<Login/>} />
-        <Route path="/sign-up" element={<SignUp/>} />
+function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path="/" element={<CustomRoute showNavAndFooter={true} />} >
+          {/* home */}
+          <Route index element={<Home />} />
+          <Route path="/job/:id" element={<JobPost />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+
+          <Route path="" element={<AuthRoute />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
+          </Route>
+
+          <Route path="" element={<PrivetRoute />}>
+            <Route path="/user/:id" element={<User />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/applications" element={<Application />} />
+          </Route>
+          <Route path="/error" element={<Error />} />
         </Route>
         
-        <Route path="" element={<PrivetRoute/>} >
-        <Route path="/user/:id" element={<User/>} />
-        </Route>
-        {/* error */}
-        <Route path="/error" element={<Error />} />
-      </Route>
+        
+  
     )
-
-  )
+  );
   return (
     <div className="App">
-     <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </div>
   );
 }
-
-
 
 export default App;

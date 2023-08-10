@@ -1,25 +1,67 @@
 [
-  {"label": "All" , "value": "All"},
+  { "label": "All", "value": "All" },
   {
-    "label": "Information Technology/IT",
-    "value": "Information Technology/IT"
+    "label": "IT",
+    "value": "Information Technology"
   },
-  { "label": "Marketing/Communication", "value": "Marketing/Communication" },
-  { "label": "Accounting/Finance", "value": "Accounting/Finance" },
-  { "label": "Human Resources", "value": "Human Resources" },
-  { "label": "Engineering", "value": "Engineering" },
-  { "label": "Legal", "value": "Legal" },
-  { "label": "Sales/Commerce", "value": "Sales/Commerce" },
-  { "label": "Production/Manufacturing", "value": "Production/Manufacturing" },
-  { "label": "Healthcare/Medicine", "value": "Healthcare/Medicine" },
-  { "label": "Education/Training", "value": "Education/Training" },
-  { "label": "Tourism/Hospitality", "value": "Tourism/Hospitality" },
-  { "label": "Transport/Logistics", "value": "Transport/Logistics" },
   {
-    "label": "Art/Culture/Entertainment",
-    "value": "Art/Culture/Entertainment"
+    "label": "Finance",
+    "value": "Finance"
   },
-  { "label": "Consulting", "value": "Consulting" },
-  { "label": "Real Estate", "value": "Real Estate" },
-  { "label": "Insurance", "value": "Insurance" }
+  {
+    "label": "Healthcare",
+    "value": "Healthcare"
+  },
+  {
+    "label": "Marketing",
+    "value": "Marketing"
+  },
+  {
+    "label": "Education",
+    "value": "Education"
+  },
+  {
+    "label": "Sales",
+    "value": "Sales"
+  },
+  {
+    "label": "Engineering",
+    "value": "Engineering"
+  },
+  {
+    "label": "Hospitality",
+    "value": "Hospitality"
+  },
+  {
+    "label": "Media",
+    "value": "Media"
+  },
+  {
+    "label": "Art",
+    "value": "Art"
+  },
+  {
+    "label": "Legal",
+    "value": "Legal"
+  },
+  {
+    "label": "Consulting",
+    "value": "Consulting"
+  },
+  {
+    "label": "Retail",
+    "value": "Retail"
+  },
+  {
+    "label": "Human Resources",
+    "value": "Human Resources"
+  },
+  {
+    "label": "Chemistry",
+    "value": "Chemistry"
+  },
+  {
+    "label": "Development",
+    "value": "Development"
+  }
 ]

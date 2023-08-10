@@ -18,7 +18,7 @@ import { FaUserAlt } from "react-icons/fa";
 //utls
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { logout,reset } from "../../toolkit/auth/authSlice";
 
 
@@ -30,7 +30,11 @@ const MainNavBar = () => {
   const animate = useAnimation();
   const dispatch=useDispatch()
   const navigate=useNavigate()
-  const {user,userDecoded}=useSelector((state)=>state.auth)
+  const {user,userDecoded}=true
+
+  const link = null
+
+  
   const transition = {
     duration: 0.5,
     delay: 0.1,
@@ -107,7 +111,7 @@ const MainNavBar = () => {
             <Link to="/">Home</Link>
           </li>
           {user && (<li>
-            <Link to={`/user/${userDecoded.user_str_id}`}>Profile</Link>
+            <Link to={link}>Profile</Link>
           </li>)}
           <li>
             <Link to='about-us'>About Us</Link>
@@ -120,7 +124,7 @@ const MainNavBar = () => {
       <div className="right">
         <ul>
           <li>
-            <Link to="/">
+            <Link to="/chat">
               <AiFillMessage></AiFillMessage>
             </Link>
           </li>

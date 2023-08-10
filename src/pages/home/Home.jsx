@@ -41,28 +41,18 @@ const Home = () => {
     }
   }, [target, animate]);
 
-  const options = [
-    { label: "New", value: "New" },
-    { label: "Old", value: "Old" },
-  ];
-
-  // get select from Select componenets
-  const handleSelectChange = (value) => {
-    setSelectedOption(value);
-    setSearchQuery("");
-  };
+  
   const handleSelectChangeCities = (value) => {
     setSelectedCities(value);
-    console.log(`The selected city is : ${selectedCities}`);
   };
 
   const handleSelectChangeDomain = (value) => {
     setSelectedDomains(value);
-    console.log(`The selected Domain is : ${selectedDomains}`);
+    
   };
   const handleSelectChangeEducation = (value) => {
     setSelectedEducation(value);
-    console.log(`The selected education is : ${selectedEducation}`);
+  
   };
 
   // scroll button
@@ -92,18 +82,28 @@ const Home = () => {
 
   // fetch data
   useEffect(() => {
-
-    axios
-      .get("http://localhost:8000/api/jobs/")
-      .then((response) => {
-        const fiterJobs = response.data.slice(0, 200);
-        setJobs(fiterJobs);
-      })
-      .catch((error) => {
+    const fetchFilteredJobs = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/jobs/", {
+          params: {
+            sort:selectedOption,
+            city: selectedCities,
+            domain: selectedDomains,
+            education: selectedEducation,
+          },
+        });
+  
+        const filteredJobs = response.data.slice(0, 200);
+        setJobs(filteredJobs);
+      } catch (error) {
         console.log(error);
-      });
-  }, []);
+      }
+    };
+    
+    fetchFilteredJobs();
+  }, [selectedCities, selectedDomains, selectedEducation,selectedOption]);
 
+  
   // merge jobs and users,when we use api we need relationship in db cascade users and jobs
 
   const mergedData = jobs
@@ -123,40 +123,29 @@ const Home = () => {
   // search in whit title and discriptioin
 
   const handleSearchQueryChange = (e) => {
-    const query = e.target.value;
+    const query = e.target.value.toLowerCase();
     setSearchQuery(query);
     let filteredJobs = mergedData.filter(
       (job) =>
-        job.jobe_title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        job.job_description
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase())
+        job.jobe_title.toLowerCase().includes(query) ||
+        job.job_description.toLowerCase().includes(query)
     );
-    if (selectedOption === "New") {
-      filteredJobs = filteredJobs.filter((job) => {
-        const jobDate = job.created_date;
-        const [jobMonth, jobDay, jobYear] = jobDate
-          .split("/")
-          .map((str) => parseInt(str));
-        const jobDateObject = new Date(jobYear, jobMonth - 1, jobDay);
-        const today = new Date();
-        const newDay = new Date(
-          today.getFullYear(),
-          today.getMonth(),
-          today.getDate()
-        );
-        return newDay === jobDateObject;
-      });
-    } else if (selectedOption === "Old") {
-      filteredJobs = filteredJobs.filter((job) => {
-        const jobDate = job.created_date.split("/");
-        const today = new Date();
-        const newDate = new Date(jobDate[2], jobDate[0] - 1, jobDate[1]);
-        return newDate < today;
-      });
-    }
+  
+ 
+  
     setFilteredJobs(filteredJobs);
   };
+  
+  const options = [
+    { label: "New", value: "New" },
+    { label: "Old", value: "Old" },
+  ];
+  
+  const handleSelectChange = (value) => {
+    setSelectedOption(value);
+  };
+  
+
 
   // if search query not empty push filteredJobs else push currentJobs
 
@@ -199,6 +188,14 @@ const Home = () => {
         <h1>Filter</h1>
         <div className="row">
           <div className="sub-row">
+          <div className="col selected-sort" >
+            <h4>Sort by old or new</h4>
+                <Select
+                  options={options}
+                  defaultValue="Select"
+                  onChange={handleSelectChange}
+                />
+              </div>
             <div className="col">
               <h4>Cities</h4>
               <Select
@@ -268,13 +265,7 @@ const Home = () => {
                 value={searchQuery}
                 onChange={handleSearchQueryChange}
               />
-              <div style={{ display: "none" }}>
-                <Select
-                  options={options}
-                  defaultValue="Select"
-                  onChange={handleSelectChange}
-                />
-              </div>
+              
             </div>
           </div>
           <div className="col job-result">

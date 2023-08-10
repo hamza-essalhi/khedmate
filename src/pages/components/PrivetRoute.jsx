@@ -1,7 +1,6 @@
-import { useSelector } from 'react-redux'
 import {Navigate,Outlet} from 'react-router-dom'
 const PrivetRoute = () => {
-    const {user}=useSelector((state)=>state.auth)
+    const user=true
     return user ? <Outlet/> :  <Navigate to='/login' replace/>
 }
  
